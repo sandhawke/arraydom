@@ -1,0 +1,29 @@
+{
+  "name": "lazydom",
+  "version": "0.0.1",
+  "description": "Deal with HTML as nested lists",
+  "main": "index.js",
+  "scripts": {
+    "test": "faucet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandhawke/lazydom.git"
+  },
+  "keywords": [
+    "html"
+  ],
+  "author": "Sandro Hawke <sandro@hawke.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sandhawke/lazydom/issues"
+  },
+  "homepage": "https://github.com/sandhawke/lazydom#readme",
+  "dependencies": {
+    "debug": "^2.2.0"
+  },
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "tape": "^4.5.1"
+  }
+}
