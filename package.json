@@ -1,6 +1,6 @@
 {
   "name": "arraydom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Consider HTML a simple tree of JS arrays",
   "main": "index.js",
   "scripts": {
