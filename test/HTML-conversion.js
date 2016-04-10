@@ -202,4 +202,10 @@ test('indenting', t => {
   compact = true
 })
 
-
+test('skip attrs', t => {
+  let tree = ['div', 'hello']
+  let html = '<div>hello</div>'
+  // just one way for now; we don't denomalize on read (yet)
+  run1(t, tree, html)
+})
+  

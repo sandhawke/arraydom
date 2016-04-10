@@ -38,6 +38,30 @@ function encode (s) {
   return he.encode(s, {useNamedReferences: true})
 }
 
+/*
+  return a copy of this node where the second element is defintely the
+  attribute object.  By calling this in all the right places, we allow
+  people to omit that element.  Not sure yet whether that's a good
+  practice.
+
+  We might also want an in-place normalize-node or normalize-tree.
+*/
+
+function normalizedNode (node) {
+  if (node.length === 0) {
+    throw Error('cant handle empty nodes')
+  }
+  if (node.length === 1) {
+    return [ node[0], {} ]
+  }
+  if (typeof node[1] === 'object' && !Array.isArray(node[1])) {
+    return node
+  }
+  const result = node.slice(1)
+  result.splice(0,0, node[0], {})
+  return result
+}
+
 function stringify (tree, options) {
   options = options || {}
   const s = new Serializer(options)
@@ -55,9 +79,16 @@ function Serializer (options) {
 // would be more efficient to use some kind of output stream instead
 // of a string, probably...
 Serializer.prototype.serialize = function (tree, indent) {
+  // not yet in node: [tags, attrs, ...children] = normalizedNode(tree)
+  const nn = normalizedNode(tree)
+  const tags = nn[0]
+  const attrs = nn[1]
+  const children = nn.slice(2)
+  /*
   const tags = tree[0] || 'div'
   const attrs = tree[1] || {}
   const children = tree.slice(2)
+  */
 
   debug('starting with', tags)
   let s = ''
