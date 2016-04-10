@@ -21,6 +21,7 @@
   "homepage": "https://github.com/sandhawke/arraydom#readme",
   "dependencies": {
     "commander": "^2.9.0",
+    "commonmark": "^0.25.0",
     "debug": "^2.2.0",
     "he": "^1.0.0",
     "htmlparser2": "^3.9.0"

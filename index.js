@@ -1,6 +1,7 @@
 'use strict'
 
 const htmlparser = require("htmlparser2")
+const commonmark = require('commonmark')
 const he = require("he")
 const debug = require('debug')('arraydom')
 const d2 = require('debug')('lazydom.fromHTML')
@@ -284,10 +285,19 @@ function parseElement (text) {
   return document[2]
 }
 
+function parseDocumentMD (text) {
+  const reader = new commonmark.Parser()
+  const writer = new commonmark.HtmlRenderer()
+  const parsed = reader.parse(text)
+  const result = writer.render(parsed)
+  return parseDocument(result)
+}
+
 module.exports.stringify = stringify
 //module.exports.fromHTML = fromHTML
 
 module.exports.parseDocument = parseDocument
+module.exports.parseDocumentMD = parseDocumentMD
 module.exports.parseElement = parseElement
 
 // console.log('got', JSON.stringify(parse('hello<br><span><br></span>')))
