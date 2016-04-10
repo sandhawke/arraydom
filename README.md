@@ -7,7 +7,7 @@ Converts back and forth between these two representations:
 ```html
 <html>
   <head>
-    <title>Lazydom Example Page</title>
+    <title>Arraydom Example Page</title>
   </head>
   <body>
     <h1>Page Title</h1>
@@ -23,7 +23,7 @@ and
 ```json
 [ "html", {},
   [ "head", {},
-    [ "title", {}, "Lazydom Example Page" ]
+    [ "title", {}, "Arraydom Example Page" ]
   ],
   ["body", {},
    [ "h1", {}, "Page Title"],
