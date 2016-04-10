@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/sandhawke/lazydom#readme",
   "dependencies": {
-    "debug": "^2.2.0"
+    "commander": "^2.9.0",
+    "debug": "^2.2.0",
+    "htmlparser2": "^3.9.0"
   },
   "devDependencies": {
     "faucet": "0.0.1",

@@ -1,9 +1,33 @@
 'use strict'
 
+const htmlparser = require("htmlparser2");
 const debug = require('debug')('lazydom')
+const d2 = require('debug')('lazydom.fromHTML')
+const d3 = require('debug')('d3')
 
 
 const pad = Array(80).join(' ')  // don't bother to indent more than 80
+
+const selfClosing = {
+  // from http://xahlee.info/js/html5_non-closing_tag.html
+  // These are the tags that don't need an end-tag
+  area: true,
+  base: true,
+  br: true,
+  col: true,
+  command: true,
+  embed: true,
+  hr: true,
+  img: true,
+  input: true,
+  keygen: true,
+  link: true,
+  meta: true,
+  param: true,
+  source: true,
+  track: true,
+  wbr: true
+}
 
 function toHTML (tree, options) {
   options = options || {}
@@ -29,6 +53,7 @@ Serializer.prototype.serialize = function (tree, indent) {
   debug('starting with', tags)
   let s = ''
   const parts = tags.split(' ')
+  const tag = parts[0]
   debug('parts', parts)
 
   if (indent >= 0) {
@@ -49,7 +74,7 @@ Serializer.prototype.serialize = function (tree, indent) {
       }
     }
   }
-  s += '<' + parts[0]
+  s += '<' + tag
   if (parts.length > 1) {
     s += ' class="' + parts.slice(1).join(' ') + '"'
   }
@@ -76,7 +101,7 @@ Serializer.prototype.serialize = function (tree, indent) {
     s += ' style="' + style.trim() + '"'
   }
 
-  if (children.length === 0) {
+  if (selfClosing[tag]) {
     if (s.endsWith('"')) {
       s += ' ' 
     }
@@ -88,7 +113,7 @@ Serializer.prototype.serialize = function (tree, indent) {
   }
 
   s += '>'
-    if (indent >= 0) {
+    if (indent >= 0 && children.length > 0) {
     s += '\n'
   }
 
@@ -104,10 +129,10 @@ Serializer.prototype.serialize = function (tree, indent) {
     }
   }
 
-  if (indent >= 0) {
+  if (indent >= 0 && children.length > 0) {
     s += pad.slice(0, (indent) * 2)
   }
-  s += '</' + parts[0] + '>'
+  s += '</' + tag + '>'
   if (oldIndent >= 0) {
     s += '\n'
   }
@@ -115,5 +140,76 @@ Serializer.prototype.serialize = function (tree, indent) {
   return s
 }
 
+function fromHTML (text) {
+  let stack = []
+  let index = -1
+  let parser = new htmlparser.Parser({
+	  onopentag: function (name, attribs) {
+      d3('open', name)
+      d2('open', name, index, stack)
+      let me = [name, attribs]
+      if (index >= 0) {
+        stack[index].push(me)
+      }
+      index++
+      stack[index] = me
+      d2('leaving: ', index, stack)
+	  },
+	  ontext: function(text){
+
+      if (text.match(/^\n *$/)) {
+        // Odds are very, very good this is indenting stuff we don't
+        // want....   But this is still imperfect.   Make it a flag?
+        return
+      }
+      d3('text', JSON.stringify(text))
+      stack[index].push(text)
+	  },
+	  onclosetag: function(name){
+      d2('close', name)
+      d3('close', name)
+      index--
+      d2('leaving: ', index, stack)
+	  }
+  }, {decodeEntities: true})
+  parser.write(text)
+  parser.end()
+  moveClassToTag(stack[0])
+  return stack[0]
+}
+
+function moveClassToTag (tree) {
+  const tags = tree[0] || 'div'
+  const attrs = tree[1] || {}
+  const children = tree.slice(2)
+
+  if (attrs.class) {
+    tree[0] = tree[0] + ' ' + attrs.class
+    delete attrs.class
+  }
+  // maybe class was the only attr; if so, make the array shorter
+  if (tree.length === 2 && Object.getOwnPropertyNames(attrs).length === 0) {
+    tree.length = 1
+  }
+
+  // Maybe this should be in another tree traversal?
+  // If the attribute value can be cleanly converted to a number, do it
+  for (let key of Object.getOwnPropertyNames(attrs)) {
+    let val = attrs[key]
+    let numval = Number(val)
+    if (!Number.isNaN(numval)) {
+      if (""+numval === val) {
+        attrs[key] = numval
+      }
+    }
+  }
+
+
+  for (let child of children) {
+    moveClassToTag(child)
+  }
+}
+
 module.exports.toHTML = toHTML
+module.exports.fromHTML = fromHTML
 
