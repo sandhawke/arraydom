@@ -3,12 +3,12 @@
 
 const program = require('commander')
 const package_json = require('../package.json')
-const debug = require('debug')('lazydom.to-json')
-const lazydom = require('../index')
+const debug = require('debug')('arraydom.to-json')
+const arraydom = require('../index')
 
 program
   .version(package_json.version)
-  .usage('< input-json-file > output-html-file')
+  .usage('< input-html-file > output-json-file')
   .parse(process.argv)
 
 if (program.args.length !== 0) {
@@ -25,6 +25,6 @@ process.stdin.on('readable', () => {
   }
 });
 process.stdin.on('end', () => {
-  let html = lazydom.toHTML(JSON.parse(buf),{compact:false})
-  process.stdout.write(html)
+  let doc = arraydom.parseDocument(buf)
+  process.stdout.write(JSON.stringify(doc, null, 2))
 });

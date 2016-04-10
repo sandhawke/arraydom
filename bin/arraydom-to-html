@@ -8,7 +8,7 @@ const lazydom = require('../index')
 
 program
   .version(package_json.version)
-  .usage('< input-html-file > output-json-file')
+  .usage('< input-json-file > output-html-file')
   .parse(process.argv)
 
 if (program.args.length !== 0) {
@@ -25,6 +25,6 @@ process.stdin.on('readable', () => {
   }
 });
 process.stdin.on('end', () => {
-  let tree = lazydom.fromHTML(buf)
-  process.stdout.write(JSON.stringify(tree, null, 2))
+  let html = lazydom.stringify(JSON.parse(buf),{compact:false})
+  process.stdout.write(html)
 });

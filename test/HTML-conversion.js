@@ -1,18 +1,25 @@
 'use strict'
+/*
+
+  todo:
+  - reorg most of this as driven by external json
+
+*/
+
 const test = require('tape')
-const lazydom = require('..')
+const arraydom = require('..')
 
 let compact=true
 
 function run (t, tree, html) {
   t.plan(2)
-  t.equal(lazydom.toHTML(tree, {compact: compact}), html)
-  t.deepEqual(lazydom.fromHTML(html), tree)
+  t.equal(arraydom.stringify(tree, {compact: compact}), html)
+  t.deepEqual(arraydom.parseElement(html), tree)
 }
 
 function run1 (t, tree, html) {
   t.plan(1)
-  t.equal(lazydom.toHTML(tree, {compact: compact}), html)
+  t.equal(arraydom.stringify(tree, {compact: compact}), html)
 }
 
 test('minimal element', t => {

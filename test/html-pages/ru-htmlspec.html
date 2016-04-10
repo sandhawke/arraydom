@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta charset="windows-1251">
+<title>HTML5</title>
+<link href="W3C-REC.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="head" id="head">
+<header><span id="styleSwitch"></span><p><a href="http://www.w3.org/"><img alt="W3C" height="48" src="im/w3c_home.png" width="72"></a></p>
+<h1 id="big-title">HTML5</h1>
+<p>Грамматика и ассоциированные API для HTML и XHTML</p>
+<div class="subtocyel"><p align="center" style="margin-top: 1em; margin-bottom: 1em; line-height:200%"><span style="font-size: 2em; font-weight: 700">ВНИМАНИЕ!</span></p>
+<p>Оригинальная версия этой спецификации на английском языке находится по адресу:&nbsp;&nbsp;&nbsp; <a href="http://www.w3.org/TR/2014/REC-html5-20141028/">
+http://www.w3.org/TR/2014/REC-html5-20141028/</a></p>
+<p>Данный документ может содержать ошибки перевода и опечатки.<br>
+Только оригинал этой спецификации на английском языке на сайте W3C является официальной версией.</p>
+<p>&nbsp;</p></div>
+<h2 id="w3c-recommendation-28-october-2014">Рекомендации W3C от 28 октября 2014 г.</h2>
+<dl>
+<dt style="font-weight: bold; font-style: normal">Данная версия:</dt>
+<dd><a href="http://www.w3.org/TR/2014/REC-html5-20141028/">http://www.w3.org/TR/2014/REC-html5-20141028/</a></dd>
+<dt style="font-weight: bold; font-style: normal">Последняя опубликованная версия:</dt>
+<dd><a href></a></dd>
+<dt style="font-weight: bold; font-style: normal">Последняя версия HTML:</dt>
+<dd><a href="http://www.w3.org/TR/html/">http://www.w3.org/TR/html/</a></dd>
+<dt style="font-weight: bold; font-style: normal">Последний редакторский вариант HTML:</dt>
+<dd><a class="latest-link" href="http://www.w3.org/html/wg/drafts/html/master/">http://www.w3.org/html/wg/drafts/html/master/</a></dd>
+<dt style="font-weight: bold; font-style: normal">Предыдущая версия:</dt>
+<dd><a href="http://www.w3.org/TR/2014/PR-html5-20140916/">http://www.w3.org/TR/2014/PR-html5-20140916/</a></dd>
+<dt style="font-weight: bold; font-style: normal">Предыдущие рекомендации:</dt>
+<dd><a href="http://www.w3.org/TR/1999/REC-html401-19991224/">http://www.w3.org/TR/1999/REC-html401-19991224/</a></dd>
+<dt id="specification-editors" style="font-weight: bold; font-style: normal">Редакторы:</dt>
+<dd>WHATWG:</dd>
+<dd><a href="mailto:ian@hixie.ch">Ian Hickson</a>, Google, Inc.</dd>
+<dd>W3C:</dd>
+<dd><a href="http://berjon.com/">Robin Berjon</a>, W3C</dd>
+<dd><a href="mailto:sfaulkner@paciellogroup.com">Steve Faulkner</a>, The Paciello Group</dd>
+<dd><a href="mailto:travil@microsoft.com">Travis Leithead</a>, Microsoft Corporation</dd>
+<dd><a href="mailto:Erika.Doyle@microsoft.com">Erika Doyle Navara</a>, Microsoft Corporation</dd>
+<dd><a href="mailto:eoconnor@apple.com">Edward O&#39;Connor</a>, Apple Inc.</dd>
+<dd><a href="mailto:silviapfeiffer1@gmail.com">Silvia Pfeiffer</a></dd>
+</dl>
+<p>Перевод выполнил Александр Пирамидин (<b><i><a href="mailto:aleks@piramidin.com">много денег не высылайте</a>!</i></b>).</p><p>Пожалуйста, проверьте в <a href="https://www.w3.org/html/wg/html5-errata"><strong>errata</strong></a> список ошибок и проблем, о которых сообщают после выхода данного документа. </p>
+<p>Эта спецификация также имеется&nbsp; в виде <a href="single-page.html">одностраничного HTML документа</a>. См. также <strong>
+<a href="http://www.w3.org/2003/03/Translations/byTechnology?technology=html5"><span style="background-position: 0% 0%">переводы на др. языки</span></a></strong>. </p>
+<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2014 <a href="http://www.w3.org/"><abbr title="World Wide
+   Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts
+   Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research
+   Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), Все Права Зарезервированы. W3C применяет правила
+<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">по обязательствам</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">торговой марке</a> и
+<a href="http://www.w3.org/Consortium/Legal/copyright-documents">использованию документов</a>.</p>
+</header>
+</div>
+<hr class="top">
+<h2 id="abstract">Резюме</h2>
+<p>Эта спецификация представляет собой пятую базовую версию ядра языка World Wide Web: Hypertext Markup Language (HTML). В этой версии появились новые возможности – в помощь авторам вэб-приложений, введены 
+новые элементы на основе исследований текущей практики авторских разработок, также особое внимание уделено определению чётких критериев соответствия для пользовательских агентов в целях улучшения совместимости.
+</p>
+<h2 id="status-of-this-document">Статус данного документа</h2>
+<p>Этот параграф описывает статус данного документа на момент публикации. Другие документы могут заменить данный документ. Список текущих публикаций W3C и последняя редакция данного технического сообщения 
+находятся в индексе технических сообщений W3C на странице <a href="http://www.w3.org/TR/">http://www.w3.org/TR/</a>. </p>
+<p>W3C <a href="http://www.w3.org/html/wg/">HTML Working Group</a> это рабочая группа W3C, отвечающая за работу над данной спецификацией. Эта спецификация – Рекомендации от 28 октября 2014 г. </p>
+<p>Если Вы хотите прокомментировать этот документ способом, который отслеживается W3C, пожалуйста, отправьте комментарий на нашу <a href="http://www.w3.org/Bugs/Public/enter_bug.cgi?product=HTML%20WG">
+публичную базу багов </a>&nbsp;(<a href="https://www.w3.org/Bugs/Public/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&component=HTML5%20spec&keywords=CR%2C%20&keywords_type=allwords&known_name=CR&list_id=43956&product=HTML%20WG&query_based_on=CR&query_format=advanced">open 
+bugs</a>). Если Вы не можете это сделать, то отправьте e-mail на адрес <a href="mailto:public-html@w3.org">public-html@w3.org</a> (<a href="mailto:public-html-request@w3.org?Subject=subscribe">subscribe</a>,
+<a href="http://lists.w3.org/Archives/Public/public-html/">archives</a>), и будут приняты меры для представления Ваших комментариев в нашей public bug database. Приветствуем любые комментарии. </p>
+<p>Комплексный набор тестов для данной спецификации поддерживается и постоянно обновляется в рамках проекта <a href="https://github.com/w3c/web-platform-tests">WebPlatform Tests</a>. См. также Working 
+Group&#39;s <a href="http://w3c.github.io/test-results/html/details.html">implementation report</a>. </p>
+<p>Работа по совершенствованию данной спецификации проходит на <a href="http://www.w3.org/TR/html/">http://www.w3.org/TR/html/</a>. Эти HTML5 Recommendation являются важной вехой на пути разработки HTML, 
+но это ещё далеко не конец пути, и улучшения идут полным ходом. Возможно, что будущие версии будут публиковаться не как единая спецификация, а как набор небольших модулей. Независимо от этого
+<a href="http://www.w3.org/TR/html/">http://www.w3.org/TR/html/</a> будет поддерживаться как отправная точка всей технологии HTML. </p>
+<p>Работа по расширению данной спецификации обычно проходит через <a href="http://www.w3.org/html/wg/wiki/ExtensionSpecifications">спецификации-расширения</a>, с которыми необходимо ознакомиться, чтобы 
+быть в курсе, какие новые возможности появились. </p>
+<p>Основная часть текста данной спецификации имеется также в WHATWG <a href="http://www.whatwg.org/specs/web-apps/current-work/complete.html">HTML Living Standard</a> по лицензии, которая разрешает использование 
+текста данной спецификации. </p>
+<p>Этот документ был рассмотрен Членами W3C, разработчиками программного обеспечения и другими W3C-группами и заинтересованными сторонами и одобрен Директором в качестве W3C Рекомендаций. Это стабильный 
+документ, который может использоваться в качестве справочника или цитироваться в других документах. Цель W3C при создании данных Рекомендаций – привлечение внимания к этой спецификации и содействие её 
+широкому распространению. Это повышает функциональность и совместимость Web. </p>
+<p>Работа над данной спецификацией проходит также в <a href="http://www.whatwg.org/">WHATWG</a>. W3C HTML working group активно продвигает совместимость спецификации HTML со стандартом WHATWG в рамках
+<a href="http://www.w3.org/2013/09/html-charter.html">W3C HTML working group charter</a>. Есть различные варианты отслеживать эту работу в WHATWG: </p>
+<ul>
+<li>список рассылки Commit-Watchers (полный источник определений): <a href="http://lists.whatwg.org/listinfo.cgi/commit-watchers-whatwg.org">http://lists.whatwg.org/listinfo.cgi/commit-watchers-whatwg.org</a></li>
+<li>Аннотированное резюме унифицированных определений: <a href="http://html5.org/tools/web-apps-tracker">http://html5.org/tools/web-apps-tracker</a></li>
+<li>интерфейс Raw Subversion: <code style="font-size: inherit; font-family: monospace; font-variant: normal">svn checkout http://svn.whatwg.org/webapps/</code></li>
+</ul>
+<p>Следующие редакторские изменений появились со времени выхода Proposed Recommendation: </p>
+<ul>
+<li>Разъяснены способы публикации обновлений данной спецификации.</li>
+<li>IANA-регистрация для <code style="font-size: inherit; font-family: monospace; font-variant: normal"><a href="iana.htm#application/xhtml+xml">application/xhtml+xml</a></code> была принята 
+во время PR, что привело к небольшим изменениям соответствующего раздела.</li>
+<li>&quot;Decoder error&quot; ошибочно было указано как относящееся URL-related определение, хотя фактически оно является Encoding-related.</li>
+<li>&quot;Parsed URL&quot; получило соответствующее отображение в спецификации URL.</li>
+<li>Улучшено информативное резюме некоторых элементов. (В основном – указатели на отсутствие тэга и ARIA-правила.)</li>
+<li>Обновлено несколько ссылок на документы, у которых появились новые ревизии (RFC4281, RFC2313, RFC3490, MPEG-DASH), и сделана более стабильная ссылка на BECSS.</li>
+<li>Добавлено несколько примечаний и сделано несколько уведомлений относительно URL-ссылки.</li>
+<li>Были сделаны некоторые стилистические поправки и исправления опечаток.</li>
+</ul>
+<!-- required patent boilerplate --><p>Этот документ создан группой, работающей на основании <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. W3C поддерживает
+<a href="http://www.w3.org/2004/01/pp-impl/40318/status" rel="disclosure">публичный список открытых патентов</a>, сделанный в сотрудничестве с членами группы; на этой странице также имеются инструкции 
+по раскрытию патента. Если человек знает о патенте, который, как он уверен, содержит <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a>, он обязан раскрыть 
+информацию в соответствии с <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</p>
+<p>Этот документ регулируется <a href="http://www.w3.org/2005/10/Process-20051014/" id="w3c_process_revision">14 October 2005 W3C Process Document</a>.</p>
+<p>&nbsp;</p>
+<h2 id="contents">Оглавление</h2>
+<!--begin-toc-->
+<ul class="toc">
+<li><a href="introduction.htm#introduction"><span class="secno">1 Введение</span></a>
+<ul class="toc">
+<li><a href="introduction.htm#background"><span class="secno">1.1 Предыстория</span></a></li>
+<li><a href="introduction.htm#audience"><span class="secno">1.2 Целевая аудитория</span></a></li>
+<li><a href="introduction.htm#scope"><span class="secno">1.3 Сфера рассмотрения</span></a></li>
+<li><a href="introduction.htm#history-0"><span class="secno">1.4 История развития</span></a></li>
+<li><a href="introduction.htm#design-notes"><span class="secno">1.5 Замечания по дизайну</span></a>
+<ul class="toc">
+<li><a href="introduction.htm#serializability-of-script-execution"><span class="secno">1.5.1 Возможность сериализации выполнения скриптов</span></a></li>
+<li><a href="introduction.htm#compliance-with-other-specifications"><span class="secno">1.5.2 Соответствие другим спецификациям</span></a></li>
+<li><a href="introduction.htm#extensibility"><span class="secno">1.5.3 Расширяемость</span></a></li>
+</ul>
+</li>
+<li><a href="introduction.htm#html-vs-xhtml"><span class="secno">1.6 HTML и XHTML</span></a></li>
+<li><a href="introduction.htm#structure-of-this-specification"><span class="secno">1.7 Структура данной спецификации</span></a>
+<ul class="toc">
+<li><a href="introduction.htm#how-to-read-this-specification"><span class="secno">1.7.1 Как читать эту спецификацию</span></a></li>
+<li><a href="introduction.htm#typographic-conventions"><span class="secno">1.7.2 Типографские соглашения</span></a></li>
+</ul>
+</li>
+<li><a href="introduction.htm#fingerprint"><span class="secno">1.8 Вопросы конфиденциальности</span></a></li>
+<li><a href="introduction.htm#a-quick-introduction-to-html"><span class="secno">1.9 Краткое введение в HTML</span></a>
+<ul class="toc">
+<li><a href="introduction.htm#writing-secure-applications-with-html"><span class="secno">1.9.1 Создание безопасных приложений с помощью HTML</span></a></li>
+<li><a href="introduction.htm#common-pitfalls-to-avoid-when-using-the-scripting-apis"><span class="secno">1.9.2 Обычные ловушки, которые следует избегать при использовании API-скриптинга</span></a></li>
+<li><a href="introduction.htm#how-to-catch-mistakes-when-writing-html:-validators-and-conformance-checkers"><span class="secno">1.9.3 Как отлавливать ошибки при написании HTML: валидаторы и проверщики 
+соответствия</span></a></li>
+</ul>
+</li>
+<li><a href="introduction.htm#conformance-requirements-for-authors"><span class="secno">1.10 Требования соответствия для авторов</span></a>
+<ul class="toc">
+<li><a href="introduction.htm#presentational-markup"><span class="secno">1.10.1 Презентационная разметка</span></a></li>
+<li><a href="introduction.htm#syntax-errors"><span class="secno">1.10.2 Синтаксические ошибки</span></a></li>
+<li><a href="introduction.htm#restrictions-on-content-models-and-on-attribute-values"><span class="secno">1.10.3 Ограничения для моделей содержимого и значений атрибутов</span></a></li>
+</ul>
+</li>
+<li><a href="introduction.htm#suggested-reading"><span class="secno">1.11 Рекомендуемая литература</span></a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#infrastructure"><span class="secno">2 Общая инфраструктура</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#terminology"><span class="secno">2.1 Терминология</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#resources"><span class="secno">2.1.1 Ресурсы</span></a></li>
+<li><a href="infrastructure.htm#xml"><span class="secno">2.1.2 </span>XML</a></li>
+<li><a href="infrastructure.htm#dom-trees"><span class="secno">2.1.3 DOM-деревья</span></a></li>
+<li><a href="infrastructure.htm#scripting-0"><span class="secno">2.1.4 Скриптинг</span></a></li>
+<li><a href="infrastructure.htm#plugins"><span class="secno">2.1.5 Плагины</span></a></li>
+<li><a href="infrastructure.htm#encoding-terminology"><span class="secno">2.1.6 Кодировки символов</span></a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#conformance-requirements"><span class="secno">2.2 Требования соответствия</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#conformance-classes"><span class="secno">2.2.1 Классы соответствия</span></a></li>
+<li><a href="infrastructure.htm#dependencies"><span class="secno">2.2.2 Зависимости</span></a></li>
+<li><a href="infrastructure.htm#extensibility-0"><span class="secno">2.2.3 Расширяемость</span></a></li>
+<li><a href="infrastructure.htm#interactions-with-xpath-and-xslt"><span class="secno">2.2.4 Взаимодействие с XPath и XSLT</span></a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#case-sensitivity-and-string-comparison"><span class="secno">2.3 Чувствительность к регистру и сравнение строк</span></a></li>
+<li><a href="infrastructure.htm#common-microsyntaxes"><span class="secno">2.4 Общие микросинтаксисы</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#common-parser-idioms"><span class="secno">2.4.1 Общие идиомы парсера</span></a></li>
+<li><a href="infrastructure.htm#boolean-attributes"><span class="secno">2.4.2 Булевы атрибуты</span></a></li>
+<li><a href="infrastructure.htm#keywords-and-enumerated-attributes"><span class="secno">2.4.3 Ключевые слова и перечислимые атрибуты</span></a></li>
+<li><a href="infrastructure.htm#numbers"><span class="secno">2.4.4 Числа</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#signed-integers"><span class="secno">2.4.4.1 Знаковые целые</span></a></li>
+<li><a href="infrastructure.htm#non-negative-integers"><span class="secno">2.4.4.2 Неотрицательные целые</span></a></li>
+<li><a href="infrastructure.htm#floating-point-numbers"><span class="secno">2.4.4.3 Числа с плавающей точкой</span></a></li>
+<li><a href="infrastructure.htm#percentages-and-dimensions"><span class="secno">2.4.4.4 Проценты и размеры</span></a></li>
+<li><a href="infrastructure.htm#lists-of-integers"><span class="secno">2.4.4.5 Списки целых</span></a></li>
+<li><a href="infrastructure.htm#lists-of-dimensions"><span class="secno">2.4.4.6 Списки размеров</span></a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#dates-and-times"><span class="secno">2.4.5 Дата и время</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#months"><span class="secno">2.4.5.1 Месяцы</span></a></li>
+<li><a href="infrastructure.htm#dates"><span class="secno">2.4.5.2 Даты</span></a></li>
+<li><a href="infrastructure.htm#yearless-dates"><span class="secno">2.4.5.3 Даты без указания года</span></a></li>
+<li><a href="infrastructure.htm#times"><span class="secno">2.4.5.4 Время</span></a></li>
+<li><a href="infrastructure.htm#floating-dates-and-times"><span class="secno">2.4.5.5 Плавающие дата и время</span></a></li>
+<li><a href="infrastructure.htm#time-zones"><span class="secno">2.4.5.6 Часовой пояс</span></a></li>
+<li><a href="infrastructure.htm#global-dates-and-times"><span class="secno">2.4.5.7 Глобальные даты и время</span></a></li>
+<li><a href="infrastructure.htm#weeks"><span class="secno">2.4.5.8 Неделя</span></a></li>
+<li><a href="infrastructure.htm#durations"><span class="secno">2.4.5.9 Длительность</span></a></li>
+<li><a href="infrastructure.htm#vaguer-moments-in-time"><span class="secno">2.4.5.10 Менее выраженные моменты времени</span></a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#colors"><span class="secno">2.4.6 Цвета</span></a></li>
+<li><a href="infrastructure.htm#space-separated-tokens"><span class="secno">2.4.7 Лексемы с разделением пробелами</span></a></li>
+<li><a href="infrastructure.htm#comma-separated-tokens"><span class="secno">2.4.8 Лексемы с разделением запятыми</span></a></li>
+<li><a href="infrastructure.htm#syntax-references"><span class="secno">2.4.9 Ссылки</span></a></li>
+<li><a href="infrastructure.htm#mq"><span class="secno">2.4.10 Запросы носителя</span></a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#urls"><span class="secno">2.5 URLы</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#terminology-0"><span class="secno">2.5.1 Терминология</span></a></li>
+<li><a href="infrastructure.htm#resolving-urls"><span class="secno">2.5.2 Развёртывание URL-адреса</span></a></li>
+<li><a href="infrastructure.htm#dynamic-changes-to-base-urls"><span class="secno">2.5.3 Динамические изменения в базовом URL</span></a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#fetching-resources"><span class="secno">2.6 Извлечение ресурсов</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#terminology-1"><span class="secno">2.6.1 Терминология</span></a></li>
+<li><a href="infrastructure.htm#processing-model"><span class="secno">2.6.2 Модель процессинга</span></a></li>
+<li><a href="infrastructure.htm#encrypted-http-and-related-security-concerns"><span class="secno">2.6.3 Шифрование HTTP и связанные с этим вопросы безопасности</span></a></li>
+<li><a href="infrastructure.htm#content-type-sniffing"><span class="secno">2.6.4 Определение типа ресурса</span></a></li>
+<li><a href="infrastructure.htm#extracting-character-encodings-from-meta-elements"><span class="secno">2.6.5 Извлечение кодировок символов из элементов</span> <code>meta</code></a></li>
+<li><a href="infrastructure.htm#cors-settings-attributes"><span class="secno">2.6.6 CORS-атрибуты настройки</span></a></li>
+<li><a href="infrastructure.htm#cors-enabled-fetch"><span class="secno">2.6.7 Извлечение с помощью CORS</span></a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#common-dom-interfaces"><span class="secno">2.7 Общие DOM-интерфейсы</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#reflecting-content-attributes-in-idl-attributes"><span class="secno">2.7.1 Отражение атрибутов содержимого в IDL-атрибутах</span></a></li>
+<li><a href="infrastructure.htm#collections"><span class="secno">2.7.2 Коллекции</span></a>
+<ul class="toc">
+<li><a href="infrastructure.htm#htmlallcollection"><span class="secno">2.7.2.1 </span>HTMLAllCollection</a></li>
+<li><a href="infrastructure.htm#htmlformcontrolscollection"><span class="secno">2.7.2.2 </span>HTMLFormControlsCollection</a></li>
+<li><a href="infrastructure.htm#htmloptionscollection"><span class="secno">2.7.2.3 </span>HTMLOptionsCollection</a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#domstringmap"><span class="secno">2.7.3 </span>DOMStringMap</a></li>
+<li><a href="infrastructure.htm#transferable-objects"><span class="secno">2.7.4 Передаваемые объекты</span></a></li>
+<li><a href="infrastructure.htm#safe-passing-of-structured-data"><span class="secno">2.7.5 Безопасная передача структурированных данных</span></a></li>
+<li><a href="infrastructure.htm#callbacks"><span class="secno">2.7.6 Обратные вызовы</span></a></li>
+<li><a href="infrastructure.htm#garbage-collection"><span class="secno">2.7.7 Сбор мусора</span></a></li>
+</ul>
+</li>
+<li><a href="infrastructure.htm#namespaces"><span class="secno">2.8 Пространства имён</span></a></li>
+</ul>
+</li>
+<li><a href="dom.htm#dom"><span class="secno">3 Семантика, структура и API HTML-документов</span></a>
+<ul class="toc">
+<li><a href="dom.htm#documents"><span class="secno">3.1 Документы</span></a>
+<ul class="toc">
+<li><a href="dom.htm#the-document-object"><span class="secno">3.1.1 Объект</span> <code>Document</code></a></li>
+<li><a href="dom.htm#resource-metadata-management"><span class="secno">3.1.2 Менеджмент метаданных ресурса</span></a></li>
+<li><a href="dom.htm#dom-tree-accessors"><span class="secno">3.1.3 Аксесоры DOM-дерева</span></a></li>
+</ul>
+</li>
+<li><a href="dom.htm#elements"><span class="secno">3.2 Элементы</span></a>
+<ul class="toc">
+<li><a href="dom.htm#semantics-0"><span class="secno">3.2.1 Семантика</span></a></li>
+<li><a href="dom.htm#elements-in-the-dom"><span class="secno">3.2.2 Элементы в DOM</span></a></li>
+<li><a href="dom.htm#element-definitions"><span class="secno">3.2.3 Определения элементов</span></a>
+<ul class="toc">
+<li><a href="dom.htm#attributes"><span class="secno">3.2.3.1 Атрибуты</span></a></li>
+</ul>
+</li>
+<li><a href="dom.htm#content-models"><span class="secno">3.2.4 Модели содержимого</span></a>
+<ul class="toc">
+<li><a href="dom.htm#kinds-of-content"><span class="secno">3.2.4.1 Типы содержимого</span></a>
+<ul class="toc">
+<li><a href="dom.htm#metadata-content"><span class="secno">3.2.4.1.1 Содержимое метаданных</span></a></li>
+<li><a href="dom.htm#flow-content"><span class="secno">3.2.4.1.2 Потоковое содержимое</span></a></li>
+<li><a href="dom.htm#sectioning-content"><span class="secno">3.2.4.1.3 Секционирующее содержимое</span></a></li>
+<li><a href="dom.htm#heading-content"><span class="secno">3.2.4.1.4 Заголовочное содержимое</span></a></li>
+<li><a href="dom.htm#phrasing-content"><span class="secno">3.2.4.1.5 Фразовое содержимое</span></a></li>
+<li><a href="dom.htm#embedded-content"><span class="secno">3.2.4.1.6 Внедрённое содержимое</span></a></li>
+<li><a href="dom.htm#interactive-content"><span class="secno">3.2.4.1.7 Интерактивное содержимое</span></a></li>
+<li><a href="dom.htm#palpable-content"><span class="secno">3.2.4.1.8 Пальпируемое содержимое</span></a></li>
+<li><a href="dom.htm#script-supporting-elements"><span class="secno">3.2.4.1.9 Элементы поддержки скриптов</span></a></li>
+</ul>
+</li>
+<li><a href="dom.htm#transparent-content-models"><span class="secno">3.2.4.2 Модели прозрачного содержимого</span></a></li>
+<li><a href="dom.htm#paragraphs"><span class="secno">3.2.4.3 Параграфы</span></a></li>
+</ul>
+</li>
+<li><a href="dom.htm#global-attributes"><span class="secno">3.2.5 Глобальные атрибуты</span></a>
+<ul class="toc">
+<li><a href="dom.htm#the-id-attribute"><span class="secno">3.2.5.1 Атрибут</span> <code>id</code></a></li>
+<li><a href="dom.htm#the-title-attribute"><span class="secno">3.2.5.2 Атрибут</span> <code data-anolis-xref="attr-title">title</code></a></li>
+<li><a href="dom.htm#the-lang-and-xml:lang-attributes"><span class="secno">3.2.5.3 Атрибуты</span> <code data-anolis-xref="attr-lang">lang</code> и <code data-anolis-xref="attr-xml-lang">xml:lang</code></a></li>
+<li><a href="dom.htm#the-translate-attribute"><span class="secno">3.2.5.4 Атрибут</span> <code data-anolis-xref="attr-translate">translate</code></a></li>
+<li><a href="dom.htm#the-xml:base-attribute-(xml-only)"><span class="secno">3.2.5.5 Атрибут</span> <code>xml:base</code> (только XML)</a></li>
+<li><a href="dom.htm#the-dir-attribute"><span class="secno">3.2.5.6 Атрибут</span> <code>dir</code></a></li>
+<li><a href="dom.htm#classes"><span class="secno">3.2.5.7 Атрибут</span> <code>class</code></a></li>
+<li><a href="dom.htm#the-style-attribute"><span class="secno">3.2.5.8 Атрибут</span> <code>style</code></a></li>
+<li><a href="dom.htm#embedding-custom-non-visible-data-with-the-data-*-attributes"><span class="secno">3.2.5.9 Внедрение специальных невидимых данных атрибутами</span>
+<code data-anolis-xref="attr-data-*">data-*</code></a></li>
+</ul>
+</li>
+<li><a href="dom.htm#requirements-relating-to-the-bidirectional-algorithm"><span class="secno">3.2.6 Требования, применяемые к двунаправленному алгоритму</span></a>
+<ul class="toc">
+<li><a href="dom.htm#authoring-conformance-criteria-for-bidirectional-algorithm-formatting-characters"><span class="secno">3.2.6.1 Авторские критерии соответствия для символов форматирования двунаправленного 
+алгоритма</span></a></li>
+<li><a href="dom.htm#user-agent-conformance-criteria"><span class="secno">3.2.6.2 Критерии соответствия пользовательского агента (ПА)</span></a></li>
+</ul>
+</li>
+<li><a href="dom.htm#wai-aria"><span class="secno">3.2.7 </span>WAI-ARIA</a>
+<ul class="toc">
+<li><a href="dom.htm#aria-role-attribute"><span class="secno">3.2.7.1 ARIA Role-атрибут</span></a></li>
+<li><a href="dom.htm#state-and-property-attributes"><span class="secno">3.2.7.2 Атрибуты State и Property</span></a></li>
+<li><a href="dom.htm#sec-strong-native-semantics"><span class="secno">3.2.7.3 Строгая родовая семантика</span></a></li>
+<li><a href="dom.htm#sec-implicit-aria-semantics"><span class="secno">3.2.7.4 Неявная ARIA-семантика</span></a></li>
+<li><a href="dom.htm#allowed-aria-roles,-states-and-properties"><span class="secno">3.2.7.5 Допустимые ARIA роли, статусы и свойства</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="semantics.htm#semantics"><span class="secno">4 Элементы HTML</span></a>
+<ul class="toc">
+<li><a href="semantics.htm#the-root-element"><span class="secno">4.1 Корневой элемент</span><code></code></a>
+<ul class="toc">
+<li><a href="semantics.htm#the-html-element"><span class="secno">4.1.1 Элемент</span> <code>html</code></a></li>
+</ul>
+</li>
+<li><a href="document-metadata.htm#document-metadata"><span class="secno">4.2 Метаданные документа</span></a>
+<ul class="toc">
+<li><a href="document-metadata.htm#the-head-element"><span class="secno">4.2.1 Элемент</span> <code>head</code></a></li>
+<li><a href="document-metadata.htm#the-title-element"><span class="secno">4.2.2 Элемент</span> <code>title</code></a></li>
+<li><a href="document-metadata.htm#the-base-element"><span class="secno">4.2.3 Элемент</span> <code>base</code></a></li>
+<li><a href="document-metadata.htm#the-link-element"><span class="secno">4.2.4 Элемент</span> <code>link</code></a></li>
+<li><a href="document-metadata.htm#the-meta-element"><span class="secno">4.2.5 Элемент</span> <code>meta</code></a><ul class="toc">
+<li><a href="document-metadata.htm#standard-metadata-names"><span class="secno">4.2.5.1 Имена стандартных метаданных</span></a></li>
+<li><a href="document-metadata.htm#other-metadata-names"><span class="secno">4.2.5.2 Имена прочих метаданных</span></a></li>
+<li><a href="document-metadata.htm#pragma-directives"><span class="secno">4.2.5.3 Pragma-директивы</span></a></li>
+<li><a href="document-metadata.htm#other-pragma-directives"><span class="secno">4.2.5.4 Прочие pragma-директивы</span></a></li>
+<li><a href="document-metadata.htm#charset"><span class="secno">4.2.5.5 Специфицирование кодировки символов документа</span></a></li>
+</ul>
+</li>
+<li><a href="document-metadata.htm#the-style-element"><span class="secno">4.2.6 Элемент</span> <code>style</code></a></li>
+<li><a href="document-metadata.htm#styling"><span class="secno">4.2.7 Стилизация</span></a></li>
+</ul>
+</li>
+<li><a href="sections.htm#sections"><span class="secno">4.3 Разделы</span></a>
+<ul class="toc">
+<li><a href="sections.htm#the-body-element"><span class="secno">4.3.1 Элемент</span> <code>body</code></a></li>
+<li><a href="sections.htm#the-article-element"><span class="secno">4.3.2 Элемент</span> <code>article</code></a></li>
+<li><a href="sections.htm#the-section-element"><span class="secno">4.3.3 Элемент</span> <code>section</code></a></li>
+<li><a href="sections.htm#the-nav-element"><span class="secno">4.3.4 Элемент</span> <code>nav</code></a></li>
+<li><a href="sections.htm#the-aside-element"><span class="secno">4.3.5 Элемент</span> <code>aside</code></a></li>
+<li><a href="sections.htm#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements"><span class="secno">4.3.6 Элементы</span> <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code> и <code>
+h6</code></a></li>
+<li><a href="sections.htm#the-header-element"><span class="secno">4.3.7 Элемент</span> <code>header</code></a></li>
+<li><a href="sections.htm#the-footer-element"><span class="secno">4.3.8 Элемент</span> <code>footer</code></a></li>
+<li><a href="sections.htm#the-address-element"><span class="secno">4.3.9 Элемент</span> <code>address</code></a></li>
+<li><a href="sections.htm#headings-and-sections"><span class="secno">4.3.10 Заголовки и разделы</span></a>
+<ul class="toc">
+<li><a href="sections.htm#outlines"><span class="secno">4.3.10.1 Создание каркаса</span></a></li>
+<li><a href="sections.htm#sample-outlines"><span class="secno">4.3.10.2 Примеры каркаса</span></a></li>
+</ul>
+</li>
+<li><a href="sections.htm#usage-summary-0"><span class="secno">4.3.11 Резюме об использовании</span></a>
+<ul class="toc">
+<li><a href="sections.htm#article-or-section?"><span class="secno">4.3.11.1 Article или section?</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="grouping-content.htm#grouping-content"><span class="secno">4.4 Группирование содержимого</span></a>
+<ul class="toc">
+<li><a href="grouping-content.htm#the-p-element"><span class="secno">4.4.1 </span>Элемент <code>p</code></a></li>
+<li><a href="grouping-content.htm#the-hr-element"><span class="secno">4.4.2 Элемент</span> <code>hr</code></a></li>
+<li><a href="grouping-content.htm#the-pre-element"><span class="secno">4.4.3 Элемент</span> <code>pre</code></a></li>
+<li><a href="grouping-content.htm#the-blockquote-element"><span class="secno">4.4.4 Элемент</span> <code>blockquote</code></a></li>
+<li><a href="grouping-content.htm#the-ol-element"><span class="secno">4.4.5 Элемент</span> <code>ol</code></a></li>
+<li><a href="grouping-content.htm#the-ul-element"><span class="secno">4.4.6 Элемент</span> <code>ul</code></a></li>
+<li><a href="grouping-content.htm#the-li-element"><span class="secno">4.4.7 Элемент</span> <code>li</code></a></li>
+<li><a href="grouping-content.htm#the-dl-element"><span class="secno">4.4.8 Элемент</span> <code>dl</code></a></li>
+<li><a href="grouping-content.htm#the-dt-element"><span class="secno">4.4.9 Элемент</span> <code>dt</code></a></li>
+<li><a href="grouping-content.htm#the-dd-element"><span class="secno">4.4.10 Элемент</span> <code>dd</code></a></li>
+<li><a href="grouping-content.htm#the-figure-element"><span class="secno">4.4.11 Элемент</span> <code>figure</code></a></li>
+<li><a href="grouping-content.htm#the-figcaption-element"><span class="secno">4.4.12 Элемент</span> <code>figcaption</code></a></li>
+<li><a href="grouping-content.htm#the-div-element"><span class="secno">4.4.13 Элемент</span> <code>div</code></a></li>
+<li><a href="grouping-content.htm#the-main-element"><span class="secno">4.4.14 Элемент</span> <code>main</code></a></li>
+</ul>
+</li>
+<li><a href="text-level-semantics.htm#text-level-semantics"><span class="secno">4.5 Семантика уровня текста</span></a>
+<ul class="toc">
+<li><a href="text-level-semantics.htm#the-a-element"><span class="secno">4.5.1 Элемент</span> <code>a</code></a></li>
+<li><a href="text-level-semantics.htm#the-em-element"><span class="secno">4.5.2 Элемент</span> <code>em</code></a></li>
+<li><a href="text-level-semantics.htm#the-strong-element"><span class="secno">4.5.3 Элемент</span> <code>strong</code></a></li>
+<li><a href="text-level-semantics.htm#the-small-element"><span class="secno">4.5.4 Элемент</span> <code>small</code></a></li>
+<li><a href="text-level-semantics.htm#the-s-element"><span class="secno">4.5.5 Элемент</span> <code>s</code></a></li>
+<li><a href="text-level-semantics.htm#the-cite-element"><span class="secno">4.5.6 Элемент</span> <code>cite</code></a></li>
+<li><a href="text-level-semantics.htm#the-q-element"><span class="secno">4.5.7 Элемент</span> <code>q</code></a></li>
+<li><a href="text-level-semantics.htm#the-dfn-element"><span class="secno">4.5.8 Элемент</span> <code>dfn</code></a></li>
+<li><a href="text-level-semantics.htm#the-abbr-element"><span class="secno">4.5.9 Элемент</span> <code>abbr</code></a></li>
+<li><a href="text-level-semantics.htm#the-data-element"><span class="secno">4.5.10 Элемент</span> <code>data</code></a></li>
+<li><a href="text-level-semantics.htm#the-time-element"><span class="secno">4.5.11 Элемент</span> <code>time</code></a></li>
+<li><a href="text-level-semantics.htm#the-code-element"><span class="secno">4.5.12 Элемент</span> <code>code</code></a></li>
+<li><a href="text-level-semantics.htm#the-var-element"><span class="secno">4.5.13 Элемент</span> <code>var</code></a></li>
+<li><a href="text-level-semantics.htm#the-samp-element"><span class="secno">4.5.14 Элемент</span> <code>samp</code></a></li>
+<li><a href="text-level-semantics.htm#the-kbd-element"><span class="secno">4.5.15 Элемент</span> <code>kbd</code></a></li>
+<li><a href="text-level-semantics.htm#the-sub-and-sup-elements"><span class="secno">4.5.16 Элементы</span> <code>sub</code> и <code>sup</code></a></li>
+<li><a href="text-level-semantics.htm#the-i-element"><span class="secno">4.5.17 Элемент</span> <code>i</code></a></li>
+<li><a href="text-level-semantics.htm#the-b-element"><span class="secno">4.5.18 Элемент</span> <code>b</code></a></li>
+<li><a href="text-level-semantics.htm#the-u-element"><span class="secno">4.5.19 Элемент</span> <code>u</code></a></li>
+<li><a href="text-level-semantics.htm#the-mark-element"><span class="secno">4.5.20 Элемент</span> <code>mark</code></a></li>
+<li><a href="text-level-semantics.htm#the-ruby-element"><span class="secno">4.5.21 Элемент</span> <code>ruby</code></a></li>
+<li><a href="text-level-semantics.htm#the-rb-element"><span class="secno">4.5.22 Элемент</span> <code>rb</code></a></li>
+<li><a href="text-level-semantics.htm#the-rt-element"><span class="secno">4.5.23 Элемент</span> <code>rt</code></a></li>
+<li><a href="text-level-semantics.htm#the-rtc-element"><span class="secno">4.5.24 Элемент</span> <code>rtc</code></a></li>
+<li><a href="text-level-semantics.htm#the-rp-element"><span class="secno">4.5.25 Элемент</span> <code>rp</code></a></li>
+<li><a href="text-level-semantics.htm#the-bdi-element"><span class="secno">4.5.26 Элемент</span> <code>bdi</code></a></li>
+<li><a href="text-level-semantics.htm#the-bdo-element"><span class="secno">4.5.27 Элемент</span> <code>bdo</code></a></li>
+<li><a href="text-level-semantics.htm#the-span-element"><span class="secno">4.5.28 Элемент</span> <code>span</code></a></li>
+<li><a href="text-level-semantics.htm#the-br-element"><span class="secno">4.5.29 Элемент</span> <code>br</code></a></li>
+<li><a href="text-level-semantics.htm#the-wbr-element"><span class="secno">4.5.30 Элемент</span> <code>wbr</code></a></li>
+<li><a href="text-level-semantics.htm#usage-summary"><span class="secno">4.5.31 Резюме об использовании</span></a></li>
+</ul>
+</li>
+<li><a href="edits.htm#edits"><span class="secno">4.6 Редактирование</span></a>
+<ul class="toc">
+<li><a href="edits.htm#the-ins-element"><span class="secno">4.6.1 Элемент</span> <code>ins</code></a></li>
+<li><a href="edits.htm#the-del-element"><span class="secno">4.6.2 Элемент</span> <code>del</code></a></li>
+<li><a href="edits.htm#attributes-common-to-ins-and-del-elements"><span class="secno">4.6.3 Общие атрибуты элементов</span> <code>ins</code> и <code>del</code></a></li>
+<li><a href="edits.htm#edits-and-paragraphs"><span class="secno">4.6.4 Редактирование и параграфы</span></a></li>
+<li><a href="edits.htm#edits-and-lists"><span class="secno">4.6.5 Редактирование и списки</span></a></li>
+<li><a href="edits.htm#edits-and-tables"><span class="secno">4.6.6 Редактирование и таблицы</span></a></li>
+</ul>
+</li>
+<li><a href="embedded-content-0.htm#embedded-content-0"><span class="secno">4.7 Внедрённое содержимое</span></a>
+<ul class="toc">
+<li><a href="embedded-content-0.htm#the-img-element"><span class="secno">4.7.1 Элемент</span> <code>img</code></a>
+<ul class="toc">
+<li><a href="embedded-content-0.htm#alt"><span class="secno">4.7.1.1 Требования по предоставлению текста в качестве альтернативы изображений</span></a>
+<ul class="toc">
+<li><a href="embedded-content-0.htm#examples-of-scenarios-where-users-benefit-from-text-alternatives-for-images"><span class="secno">4.7.1.1.1 Примеры сценариев, когда пользователь выигрывает от использования 
+альтернативного текста</span></a></li>
+<li><a href="embedded-content-0.htm#general-guidelines"><span class="secno">4.7.1.1.2 Общие рекомендации</span></a></li>
+<li><a href="embedded-content-0.htm#a-link-or-button-containing-nothing-but-an-image"><span class="secno">4.7.1.1.3 Ссылка или кнопка, не содержащая ничего, кроме изображения</span></a></li>
+<li><a href="embedded-content-0.htm#graphical-representations:-charts,-diagrams,-graphs,-maps,-illustrations"><span class="secno">4.7.1.1.4 Графическое представление: схемы, диаграммы, графики, карты, 
+иллюстрации</span></a></li>
+<li><a href="embedded-content-0.htm#images-of-text"><span class="secno">4.7.1.1.5 Изображения текста</span></a></li>
+<li><a href="embedded-content-0.htm#images-that-include-text"><span class="secno">4.7.1.1.6 Изображения, содержащие текст</span></a></li>
+<li><a href="embedded-content-0.htm#images-that-enhance-the-themes-or-subject-matter-of-the-page-content"><span class="secno">4.7.1.1.7 Изображения которые поясняют тему или предмет содержания страницы</span></a></li>
+<li><a href="embedded-content-0.htm#a-graphical-representation-of-some-of-the-surrounding-text"><span class="secno">4.7.1.1.8 Графическое представление некоторого окружающего текста</span></a></li>
+<li><a href="embedded-content-0.htm#a-purely-decorative-image-that-doesn't-add-any-information"><span class="secno">4.7.1.1.9 Чисто декоративное изображение, не несущее никакой информации</span></a></li>
+<li><a href="embedded-content-0.htm#inline"><span class="secno">4.7.1.1.10 Инлайн-изображения</span></a></li>
+<li><a href="embedded-content-0.htm#a-group-of-images-that-form-a-single-larger-picture-with-no-links"><span class="secno">4.7.1.1.11 Группа изображений, формирующая единое большое изображение без ссылок</span></a></li>
+<li><a href="embedded-content-0.htm#image-maps-0"><span class="secno">4.7.1.1.12 Карты изображений</span></a></li>
+<li><a href="embedded-content-0.htm#a-group-of-images-that-form-a-single-larger-picture-with-links"><span class="secno">4.7.1.1.13 Группа изображений, формирующая единое большое изображение со ссылками</span></a></li>
+<li><a href="embedded-content-0.htm#images-of-pictures"><span class="secno">4.7.1.1.14 Декоративные изображения</span></a></li>
+<li><a href="embedded-content-0.htm#webcam-images"><span class="secno">4.7.1.1.15 Изображения с вэб-камеры</span></a></li>
+<li><a href="embedded-content-0.htm#when-a-text-alternative-is-not-available-at-the-time-of-publication"><span class="secno">4.7.1.1.16 Если текстовая альтернатива недоступна на момент публикации</span></a></li>
+<li><a href="embedded-content-0.htm#an-image-not-intended-for-the-user"><span class="secno">4.7.1.1.17 Изображение, не предназначенное для пользователя</span></a></li>
+<li><a href="embedded-content-0.htm#icon-images"><span class="secno">4.7.1.1.18 Изображения-иконки</span></a></li>
+<li><a href="embedded-content-0.htm#logos,-insignia,-flags,-or-emblems"><span class="secno">4.7.1.1.19 Логотипы, знаки, флаги или эмблемы</span></a></li>
+<li><a href="embedded-content-0.htm#captcha-images"><span class="secno">4.7.1.1.20 CAPTCHA-изображения</span></a></li>
+<li><a href="embedded-content-0.htm#guidance-for-markup-generators"><span class="secno">4.7.1.1.21 Указания для генераторов разметки</span></a></li>
+<li><a href="embedded-content-0.htm#guidance-for-conformance-checkers"><span class="secno">4.7.1.1.22 Указания для проверщиков соответствия</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="embedded-content-0.htm#the-iframe-element"><span class="secno">4.7.2 Элемент</span> <code>iframe</code></a></li>
+<li><a href="embedded-content-0.htm#the-embed-element"><span class="secno">4.7.3 Элемент</span> <code>embed</code></a></li>
+<li><a href="embedded-content-0.htm#the-object-element"><span class="secno">4.7.4 Элемент</span> <code>object</code></a></li>
+<li><a href="embedded-content-0.htm#the-param-element"><span class="secno">4.7.5 Элемент</span> <code>param</code></a></li>
+<li><a href="embedded-content-0.htm#the-video-element"><span class="secno">4.7.6 Элемент</span> <code>video</code></a></li>
+<li><a href="embedded-content-0.htm#the-audio-element"><span class="secno">4.7.7 Элемент</span> <code>audio</code></a></li>
+<li><a href="embedded-content-0.htm#the-source-element"><span class="secno">4.7.8 Элемент</span> <code>source</code></a></li>
+<li><a href="embedded-content-0.htm#the-track-element"><span class="secno">4.7.9 Элемент</span> <code>track</code></a></li>
+<li><a href="embedded-content-0.htm#media-elements"><span class="secno">4.7.10 Медиа-элементы</span></a>
+<ul class="toc">
+<li><a href="embedded-content-0.htm#error-codes"><span class="secno">4.7.10.1 Коды ошибки</span></a></li>
+<li><a href="embedded-content-0.htm#location-of-the-media-resource"><span class="secno">4.7.10.2 Местонахождение медиа-ресурса</span></a></li>
+<li><a href="embedded-content-0.htm#mime-types"><span class="secno">4.7.10.3 MIME-типы</span></a></li>
+<li><a href="embedded-content-0.htm#network-states"><span class="secno">4.7.10.4 Сетевой статус</span></a></li>
+<li><a href="embedded-content-0.htm#loading-the-media-resource"><span class="secno">4.7.10.5 Загрузка медиа-ресурса</span></a></li>
+<li><a href="embedded-content-0.htm#offsets-into-the-media-resource"><span class="secno">4.7.10.6 Смещения внутри медиа-ресурса</span></a></li>
+<li><a href="embedded-content-0.htm#ready-states"><span class="secno">4.7.10.7 Статусы готовности</span></a></li>
+<li><a href="embedded-content-0.htm#playing-the-media-resource"><span class="secno">4.7.10.8 Проигрывание медиа-ресурса</span></a></li>
+<li><a href="embedded-content-0.htm#seeking"><span class="secno">4.7.10.9 Поиск</span></a></li>
+<li><a href="embedded-content-0.htm#media-resources-with-multiple-media-tracks"><span class="secno">4.7.10.10 Медиа-ресурсы с несколькими медиа-трэками</span></a>
+<ul class="toc">
+<li><a href="embedded-content-0.htm#audiotracklist-and-videotracklist-objects"><span class="secno">4.7.10.10.1 Объекты </span><code>AudioTrackList</code> и <code>VideoTrackList</code></a></li>
+<li><a href="embedded-content-0.htm#selecting-specific-audio-and-video-tracks-declaratively"><span class="secno">4.7.10.10.2 Декларативный выбор аудио- и видеотреков</span></a></li>
+</ul>
+</li>
+<li><a href="embedded-content-0.htm#synchronising-multiple-media-elements"><span class="secno">4.7.10.11 Синхронизация нескольких медиа-элементов</span></a>
+<ul class="toc">
+<li><a href="embedded-content-0.htm#introduction-0"><span class="secno">4.7.10.11.1 Введение</span></a></li>
+<li><a href="embedded-content-0.htm#media-controllers"><span class="secno">4.7.10.11.2 Медиа-контроллеры</span></a></li>
+<li><a href="embedded-content-0.htm#assigning-a-media-controller-declaratively"><span class="secno">4.7.10.11.3 Декларативное назначение медиа-контроллера</span></a></li>
+</ul>
+</li>
+<li><a href="embedded-content-0.htm#timed-text-tracks"><span class="secno">4.7.10.12 Временн<i>ы</i>е текстовые треки</span></a>
+<ul class="toc">
+<li><a href="embedded-content-0.htm#text-track-model"><span class="secno">4.7.10.12.1 Модель текстового трэка</span></a></li>
+<li><a href="embedded-content-0.htm#sourcing-in-band-text-tracks"><span class="secno">4.7.10.12.2 Ресурсы внутриполосных текстовых треков</span></a></li>
+<li><a href="embedded-content-0.htm#sourcing-out-of-band-text-tracks"><span class="secno">4.7.10.12.3 Ресурсы внеполосных текстовых треков</span></a></li>
+<li><a href="embedded-content-0.htm#guidelines-for-exposing-cues-in-various-formats-as-text-track-cues"><span class="secno">4.7.10.12.4 Указания по показу сигналов в разных форматах как сигналов текстовых 
+треков</span><span data-anolis-xref="text track
+  cue"></span></a></li>
+<li><a href="embedded-content-0.htm#text-track-api"><span class="secno">4.7.10.12.5 API текстового трэка</span></a></li>
+<li><a href="embedded-content-0.htm#text-tracks-describing-chapters"><span class="secno">4.7.10.12.6 Текстовые треки, описывающие главы</span></a></li>
+<li><a href="embedded-content-0.htm#cue-events"><span class="secno">4.7.10.12.7 Определения событий</span></a></li>
+</ul>
+</li>
+<li><a href="embedded-content-0.htm#user-interface"><span class="secno">4.7.10.13 Интерфейс пользователя</span></a></li>
+<li><a href="embedded-content-0.htm#time-ranges"><span class="secno">4.7.10.14 Отрезки времени</span></a></li>
+<li><a href="embedded-content-0.htm#event-definitions"><span class="secno">4.7.10.15 Определения событий</span></a></li>
+<li><a href="embedded-content-0.htm#mediaevents"><span class="secno">4.7.10.16 События: резюме</span></a></li>
+<li><a href="embedded-content-0.htm#security-and-privacy-considerations"><span class="secno">4.7.10.17 Вопросы безопасности и конфиденциальности</span></a></li>
+<li><a href="embedded-content-0.htm#best-practices-for-authors-using-media-elements"><span class="secno">4.7.10.18 Лучшая практика для авторов, использующих медиа-элементы</span></a></li>
+<li><a href="embedded-content-0.htm#best-practices-for-implementors-of-media-elements"><span class="secno">4.7.10.19 Лучшая практика для разработчиков медиа-элементов</span></a></li>
+</ul>
+</li>
+<li><a href="embedded-content-0.htm#the-map-element"><span class="secno">4.7.11 Элемент</span> <code>map</code></a></li>
+<li><a href="embedded-content-0.htm#the-area-element"><span class="secno">4.7.12 Элемент</span> <code>area</code></a></li>
+<li><a href="embedded-content-0.htm#image-maps"><span class="secno">4.7.13 Карты изображений</span></a>
+<ul class="toc">
+<li><a href="embedded-content-0.htm#authoring"><span class="secno">4.7.13.1 Авторинг</span></a></li>
+<li><a href="embedded-content-0.htm#processing-model-0"><span class="secno">4.7.13.2 Модель процессинга</span></a></li>
+</ul>
+</li>
+<li><a href="embedded-content-0.htm#mathml"><span class="secno">4.7.14 </span>MathML</a></li>
+<li><a href="embedded-content-0.htm#svg"><span class="secno">4.7.15 </span>SVG</a></li>
+<li><a href="embedded-content-0.htm#dimension-attributes"><span class="secno">4.7.16 Атрибуты измерений</span></a></li>
+</ul>
+</li>
+<li><a href="links.htm#links"><span class="secno">4.8 Гиперссылки</span></a>
+<ul class="toc">
+<li><a href="links.htm#links-created-by-a-and-area-elements"><span class="secno">4.8.1 Ссылки, созданные элементами</span> <code>a</code> и <code>area</code></a></li>
+<li><a href="links.htm#following-hyperlinks-0"><span class="secno">4.8.2 Переход по гиперссылкам</span></a></li>
+<li><a href="links.htm#downloading-resources"><span class="secno">4.8.3 Загрузка ресурсов</span></a></li>
+<li><a href="links.htm#linkTypes"><span class="secno">4.8.4 Типы гиперссылок</span></a>
+<ul class="toc">
+<li><a href="links.htm#rel-alternate"><span class="secno">4.8.4.1 Тип ссылки</span> &quot;<code>alternate</code>&quot;</a></li>
+<li><a href="links.htm#link-type-author"><span class="secno">4.8.4.2 Тип ссылки</span> &quot;<code>author</code>&quot;</a></li>
+<li><a href="links.htm#link-type-bookmark"><span class="secno">4.8.4.3 Тип ссылки</span> &quot;<code>bookmark</code>&quot;</a></li>
+<li><a href="links.htm#link-type-help"><span class="secno">4.8.4.4 Тип ссылки</span> &quot;<code>help</code>&quot;</a></li>
+<li><a href="links.htm#rel-icon"><span class="secno">4.8.4.5 Тип ссылки</span> &quot;<code>icon</code>&quot;</a></li>
+<li><a href="links.htm#link-type-license"><span class="secno">4.8.4.6 Тип ссылки</span> &quot;<code>license</code>&quot;</a></li>
+<li><a href="links.htm#link-type-nofollow"><span class="secno">4.8.4.7 Тип ссылки</span> &quot;<code>nofollow</code>&quot;</a></li>
+<li><a href="links.htm#link-type-noreferrer"><span class="secno">4.8.4.8 Тип ссылки</span> &quot;<code>noreferrer</code>&quot;</a></li>
+<li><a href="links.htm#link-type-prefetch"><span class="secno">4.8.4.9 Тип ссылки</span> &quot;<code>prefetch</code>&quot;</a></li>
+<li><a href="links.htm#link-type-search"><span class="secno">4.8.4.10 Тип ссылки</span> &quot;<code>search</code>&quot;</a></li>
+<li><a href="links.htm#link-type-stylesheet"><span class="secno">4.8.4.11 Тип ссылки</span> &quot;<code>stylesheet</code>&quot;</a></li>
+<li><a href="links.htm#link-type-tag"><span class="secno">4.8.4.12 Тип ссылки</span> &quot;<code>tag</code>&quot;</a></li>
+<li><a href="links.htm#sequential-link-types"><span class="secno">4.8.4.13 Типы последовательных ссылок</span></a>
+<ul class="toc">
+<li><a href="links.htm#link-type-next"><span class="secno">4.8.4.13.1 Тип ссылки</span> &quot;<code>next</code>&quot;</a></li>
+<li><a href="links.htm#link-type-prev"><span class="secno">4.8.4.13.2 Тип ссылки</span> &quot;<code>prev</code>&quot;</a></li>
+</ul>
+</li>
+<li><a href="links.htm#other-link-types"><span class="secno">4.8.4.14 Другие типы ссылок</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="tabular-data.htm#tabular-data"><span class="secno">4.9 Табличные данные</span></a>
+<ul class="toc">
+<li><a href="tabular-data.htm#the-table-element"><span class="secno">4.9.1 Элемент</span> <code>table</code></a>
+<ul class="toc">
+<li><a href="tabular-data.htm#table-descriptions-techniques"><span class="secno">4.9.1.1 Техника описания таблиц</span></a></li>
+<li><a href="tabular-data.htm#table-layout-techniques"><span class="secno">4.9.1.2 Техника дизайна таблиц</span></a></li>
+</ul>
+</li>
+<li><a href="tabular-data.htm#the-caption-element"><span class="secno">4.9.2 Элемент</span> <code>caption</code></a></li>
+<li><a href="tabular-data.htm#the-colgroup-element"><span class="secno">4.9.3 Элемент</span> <code>colgroup</code></a></li>
+<li><a href="tabular-data.htm#the-col-element"><span class="secno">4.9.4 Элемент</span> <code>col</code></a></li>
+<li><a href="tabular-data.htm#the-tbody-element"><span class="secno">4.9.5 Элемент</span> <code>tbody</code></a></li>
+<li><a href="tabular-data.htm#the-thead-element"><span class="secno">4.9.6 Элемент</span> <code>thead</code></a></li>
+<li><a href="tabular-data.htm#the-tfoot-element"><span class="secno">4.9.7 Элемент</span> <code>tfoot</code></a></li>
+<li><a href="tabular-data.htm#the-tr-element"><span class="secno">4.9.8 Элемент</span> <code>tr</code></a></li>
+<li><a href="tabular-data.htm#the-td-element"><span class="secno">4.9.9 Элемент</span> <code>td</code></a></li>
+<li><a href="tabular-data.htm#the-th-element"><span class="secno">4.9.10 Элемент</span> <code>th</code></a></li>
+<li><a href="tabular-data.htm#attributes-common-to-td-and-th-elements"><span class="secno">4.9.11 Общие атрибуты элементов</span> <code>td</code> и <code>th</code></a></li>
+<li><a href="tabular-data.htm#processing-model-1"><span class="secno">4.9.12 Модель процессинга</span></a>
+<ul class="toc">
+<li><a href="tabular-data.htm#forming-a-table"><span class="secno">4.9.12.1 Формирование таблицы</span></a></li>
+<li><a href="tabular-data.htm#header-and-data-cell-semantics"><span class="secno">4.9.12.2 Формирование отношений между ячейками данных и заголовочными ячейками</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="forms.htm#forms"><span class="secno">4.10 Формы</span></a>
+<ul class="toc">
+<li><a href="forms.htm#introduction-1"><span class="secno">4.10.1 Введение</span></a>
+<ul class="toc">
+<li><a href="forms.htm#writing-a-form's-user-interface"><span class="secno">4.10.1.1 Написание пользовательского интерфейса формы</span></a></li>
+<li><a href="forms.htm#implementing-the-server-side-processing-for-a-form"><span class="secno">4.10.1.2 Реализация серверного процессинга формы</span></a></li>
+<li><a href="forms.htm#configuring-a-form-to-communicate-with-a-server"><span class="secno">4.10.1.3 Настройка формы для связи с сервером</span></a></li>
+<li><a href="forms.htm#client-side-form-validation"><span class="secno">4.10.1.4 Клиентская проверка формы</span></a></li>
+<li><a href="forms.htm#input-author-notes"><span class="secno">4.10.1.5 Формат даты, времени и чисел</span></a></li>
+</ul>
+</li>
+<li><a href="forms.htm#categories"><span class="secno">4.10.2 Категории</span></a></li>
+<li><a href="forms.htm#the-form-element"><span class="secno">4.10.3 Элемент</span> <code>form</code></a></li>
+<li><a href="forms.htm#the-label-element"><span class="secno">4.10.4 Элемент</span> <code>label</code></a></li>
+<li><a href="forms.htm#the-input-element"><span class="secno">4.10.5 Элемент</span> <code>input</code></a><ul class="toc">
+<li><a href="forms.htm#states-of-the-type-attribute"><span class="secno">4.10.5.1 Статус атрибута</span> <code data-anolis-xref="attr-input-type">type</code></a>
+<ul class="toc">
+<li><a href="forms.htm#hidden-state-(type=hidden)"><span class="secno">4.10.5.1.1 Статус </span>Hidden (<code data-anolis-xref>type=hidden</code>)</a></li>
+<li><a href="forms.htm#text-(type=text)-state-and-search-state-(type=search)"><span class="secno">4.10.5.1.2 Статус Text (</span><code data-anolis-xref>type=text</code><span class="secno">) и статус Search</span><code data-anolis-xref></code> 
+(<code data-anolis-xref>type=search</code>)</a></li>
+<li><a href="forms.htm#telephone-state-(type=tel)"><span class="secno">4.10.5.1.3 Статус </span>Telephone (<code data-anolis-xref>type=tel</code>)</a></li>
+<li><a href="forms.htm#url-state-(type=url)"><span class="secno">4.10.5.1.4 Статус </span>URL (<code data-anolis-xref>type=url</code>)</a></li>
+<li><a href="forms.htm#e-mail-state-(type=email)"><span class="secno">4.10.5.1.5 Статус </span>E-mail (<code data-anolis-xref>type=email</code>)</a></li>
+<li><a href="forms.htm#password-state-(type=password)"><span class="secno">4.10.5.1.6 Статус </span>Password (<code data-anolis-xref>type=password</code>)</a></li>
+<li><a href="forms.htm#date-state-(type=date)"><span class="secno">4.10.5.1.7 Статус </span>Date (<code data-anolis-xref>type=date</code>)</a></li>
+<li><a href="forms.htm#time-state-(type=time)"><span class="secno">4.10.5.1.8 Статус </span>Time (<code data-anolis-xref>type=time</code>)</a></li>
+<li><a href="forms.htm#number-state-(type=number)"><span class="secno">4.10.5.1.9 Статус </span>Number (<code data-anolis-xref>type=number</code>)</a></li>
+<li><a href="forms.htm#range-state-(type=range)"><span class="secno">4.10.5.1.10 Статус Range</span> (<code data-anolis-xref>type=range</code>)</a></li>
+<li><a href="forms.htm#color-state-(type=color)"><span class="secno">4.10.5.1.11 Статус Color</span> (<code data-anolis-xref>type=color</code>)</a></li>
+<li><a href="forms.htm#checkbox-state-(type=checkbox)"><span class="secno">4.10.5.1.12 Статус Checkbox</span> (<code data-anolis-xref>type=checkbox</code>)</a></li>
+<li><a href="forms.htm#radio-button-state-(type=radio)"><span class="secno">4.10.5.1.13 Статус Radio Button</span> (<code data-anolis-xref>type=radio</code>)</a></li>
+<li><a href="forms.htm#file-upload-state-(type=file)"><span class="secno">4.10.5.1.14 Статус File Upload</span> (<code data-anolis-xref>type=file</code>)</a></li>
+<li><a href="forms.htm#submit-button-state-(type=submit)"><span class="secno">4.10.5.1.15 Статус Submit Button</span> (<code data-anolis-xref>type=submit</code>)</a></li>
+<li><a href="forms.htm#image-button-state-(type=image)"><span class="secno">4.10.5.1.16 Статус Image Button</span> (<code data-anolis-xref>type=image</code>)</a></li>
+<li><a href="forms.htm#reset-button-state-(type=reset)"><span class="secno">4.10.5.1.17 Статус Reset Button</span> (<code data-anolis-xref>type=reset</code>)</a></li>
+<li><a href="forms.htm#button-state-(type=button)"><span class="secno">4.10.5.1.18 Статус Button</span> (<code data-anolis-xref>type=button</code>)</a></li>
+</ul>
+</li>
+<li><a href="forms.htm#input-impl-notes"><span class="secno">4.10.5.2 Замечания по реализации, касающиеся локализации элементов управления формы</span></a></li>
+<li><a href="forms.htm#common-input-element-attributes"><span class="secno">4.10.5.3 Общие атрибуты элемента</span><code data-anolis-xref> input</code></a><code data-anolis-xref> </code>
+<ul class="toc">
+<li><a href="forms.htm#the-maxlength-and-minlength-attributes"><span class="secno">4.10.5.3.1 Атрибуты</span> <code data-anolis-xref="attr-input-maxlength">maxlength</code> и
+<code data-anolis-xref="attr-input-minlength">minlength</code></a></li>
+<li><a href="forms.htm#the-size-attribute"><span class="secno">4.10.5.3.2 Атрибут</span> <code data-anolis-xref="attr-input-size">size</code></a></li>
+<li><a href="forms.htm#the-readonly-attribute"><span class="secno">4.10.5.3.3 Атрибут</span> <code data-anolis-xref="attr-input-readonly">readonly</code></a></li>
+<li><a href="forms.htm#the-required-attribute"><span class="secno">4.10.5.3.4 Атрибут</span> <code data-anolis-xref="attr-input-required">required</code></a></li>
+<li><a href="forms.htm#the-multiple-attribute"><span class="secno">4.10.5.3.5 Атрибут</span> <code data-anolis-xref="attr-input-multiple">multiple</code></a></li>
+<li><a href="forms.htm#the-pattern-attribute"><span class="secno">4.10.5.3.6 Атрибут</span> <code data-anolis-xref="attr-input-pattern">pattern</code></a></li>
+<li><a href="forms.htm#the-min-and-max-attributes"><span class="secno">4.10.5.3.7 Атрибуты</span> <code data-anolis-xref="attr-input-min">min</code> и <code data-anolis-xref="attr-input-max">max</code></a></li>
+<li><a href="forms.htm#the-step-attribute"><span class="secno">4.10.5.3.8 Атрибут</span> <code data-anolis-xref="attr-input-step">step</code></a></li>
+<li><a href="forms.htm#the-list-attribute"><span class="secno">4.10.5.3.9 Атрибут</span> <code data-anolis-xref="attr-input-list">list</code></a></li>
+<li><a href="forms.htm#the-placeholder-attribute"><span class="secno">4.10.5.3.10 Атрибут</span> <code data-anolis-xref="attr-input-placeholder">placeholder</code></a></li>
+</ul>
+</li>
+<li><a href="forms.htm#common-input-element-apis"><span class="secno">4.10.5.4 Общие API элемента</span> <code>input</code></a></li>
+<li><a href="forms.htm#common-input-element-events"><span class="secno">4.10.5.5 Общее поведение события</span></a></li>
+</ul>
+</li>
+<li><a href="forms.htm#the-button-element"><span class="secno">4.10.6 Элемент</span> <code>button</code></a></li>
+<li><a href="forms.htm#the-select-element"><span class="secno">4.10.7 Элемент</span> <code>select</code></a></li>
+<li><a href="forms.htm#the-datalist-element"><span class="secno">4.10.8 Элемент</span> <code>datalist</code></a></li>
+<li><a href="forms.htm#the-optgroup-element"><span class="secno">4.10.9 Элемент</span> <code>optgroup</code></a></li>
+<li><a href="forms.htm#the-option-element"><span class="secno">4.10.10 Элемент</span> <code>option</code></a></li>
+<li><a href="forms.htm#the-textarea-element"><span class="secno">4.10.11 Элемент</span> <code>textarea</code></a></li>
+<li><a href="forms.htm#the-keygen-element"><span class="secno">4.10.12 Элемент</span> <code>keygen</code></a></li>
+<li><a href="forms.htm#the-output-element"><span class="secno">4.10.13 Элемент</span> <code>output</code></a></li>
+<li><a href="forms.htm#the-progress-element"><span class="secno">4.10.14 Элемент</span> <code>progress</code></a></li>
+<li><a href="forms.htm#the-meter-element"><span class="secno">4.10.15 Элемент</span> <code>meter</code></a></li>
+<li><a href="forms.htm#the-fieldset-element"><span class="secno">4.10.16 Элемент</span> <code>fieldset</code></a></li>
+<li><a href="forms.htm#the-legend-element"><span class="secno">4.10.17 Элемент</span> <code>legend</code></a></li>
+<li><a href="forms.htm#form-control-infrastructure"><span class="secno">4.10.18 Инфраструктура элемента управления формы</span></a>
+<ul class="toc">
+<li><a href="forms.htm#a-form-control's-value"><span class="secno">4.10.18.1 Значение элемента управления формы</span></a></li>
+<li><a href="forms.htm#mutability"><span class="secno">4.10.18.2 Изменяемость</span></a></li>
+<li><a href="forms.htm#association-of-controls-and-forms"><span class="secno">4.10.18.3 Ассоциирование элементов управления и форм</span></a></li>
+</ul>
+</li>
+<li><a href="forms.htm#attributes-common-to-form-controls"><span class="secno">4.10.19 Общие атрибуты элементов управления формы</span></a>
+<ul class="toc">
+<li><a href="forms.htm#naming-form-controls:-the-name-attribute"><span class="secno">4.10.19.1 Именование элементов управления формы: атрибут</span> <code data-anolis-xref="attr-fe-name">name</code></a></li>
+<li><a href="forms.htm#submitting-element-directionality:-the-dirname-attribute"><span class="secno">4.10.19.2 Отправка направленности элемента управления: атрибут</span>
+<code data-anolis-xref="attr-fe-dirname">dirname</code></a></li>
+<li><a href="forms.htm#limiting-user-input-length:-the-maxlength-attribute"><span class="secno">4.10.19.3 Ограничение длины вводимых пользователем данных: атрибут</span>
+<code data-anolis-xref="attr-fe-maxlength">maxlength</code></a></li>
+<li><a href="forms.htm#setting-minimum-input-length-requirements:-the-minlength-attribute"><span class="secno">4.10.19.4 Установка требований минимальной длины вводимых пользователем данных: атрибут</span>
+<code data-anolis-xref="attr-fe-minlength">minlength</code></a></li>
+<li><a href="forms.htm#enabling-and-disabling-form-controls:-the-disabled-attribute"><span class="secno">4.10.19.5 Включение и отключение элементов управления формы: атрибут</span>
+<code data-anolis-xref="attr-fe-disabled">disabled</code></a></li>
+<li><a href="forms.htm#form-submission"><span class="secno">4.10.19.6 Отправка формы</span></a></li>
+<li><a href="forms.htm#autofocusing-a-form-control:-the-autofocus-attribute"><span class="secno">4.10.19.7 Автофокус на элементе управления формы: атрибут</span>
+<code data-anolis-xref="attr-fe-autofocus">autofocus</code></a></li>
+<li><a href="forms.htm#autofilling-form-controls:-the-autocomplete-attribute"><span class="secno">4.10.19.8 Автозаполнение элемента управления формы: атрибут</span>
+<code data-anolis-xref="attr-fe-autocomplete">autocomplete</code></a></li>
+</ul>
+</li>
+<li><a href="forms.htm#textFieldSelection"><span class="secno">4.10.20 API выбора текстового поля</span></a></li>
+<li><a href="forms.htm#constraints"><span class="secno">4.10.21 Ограничения</span></a>
+<ul class="toc">
+<li><a href="forms.htm#definitions"><span class="secno">4.10.21.1 Определения</span></a></li>
+<li><a href="forms.htm#constraint-validation"><span class="secno">4.10.21.2 Проверка ограничений</span></a></li>
+<li><a href="forms.htm#the-constraint-validation-api"><span class="secno">4.10.21.3 API проверки ограничений</span></a></li>
+<li><a href="forms.htm#security-forms"><span class="secno">4.10.21.4 Безопасность</span></a></li>
+</ul>
+</li>
+<li><a href="forms.htm#form-submission-0"><span class="secno">4.10.22 Отправка формы</span></a>
+<ul class="toc">
+<li><a href="forms.htm#introduction-2"><span class="secno">4.10.22.1 Введение</span></a></li>
+<li><a href="forms.htm#implicit-submission"><span class="secno">4.10.22.2 Неявная отправка</span></a></li>
+<li><a href="forms.htm#form-submission-algorithm"><span class="secno">4.10.22.3 Алгоритм отправки формы</span></a></li>
+<li><a href="forms.htm#constructing-form-data-set"><span class="secno">4.10.22.4 Конструирование набора данных формы</span></a></li>
+<li><a href="forms.htm#selecting-a-form-submission-encoding"><span class="secno">4.10.22.5 Выбор кодировки отправки формы</span></a></li>
+<li><a href="forms.htm#url-encoded-form-data"><span class="secno">4.10.22.6 URL-кодированные данные формы</span></a></li>
+<li><a href="forms.htm#multipart-form-data"><span class="secno">4.10.22.7 Многочастные данные формы</span></a></li>
+<li><a href="forms.htm#plain-text-form-data"><span class="secno">4.10.22.8 Обычные текстовые данные формы</span></a></li>
+</ul>
+</li>
+<li><a href="forms.htm#resetting-a-form"><span class="secno">4.10.23 Сброс данных формы</span></a></li>
+</ul>
+</li>
+<li><a href="scripting-1.htm#scripting-1"><span class="secno">4.11 Скриптинг</span></a>
+<ul class="toc">
+<li><a href="scripting-1.htm#the-script-element"><span class="secno">4.11.1 Элемент</span> <code>script</code></a>
+<ul class="toc">
+<li><a href="scripting-1.htm#scriptingLanguages"><span class="secno">4.11.1.1 Языки скриптинга</span></a></li>
+<li><a href="scripting-1.htm#restrictions-for-contents-of-script-elements"><span class="secno">4.11.1.2 Ограничения для содержимого элементов</span> <code>script</code></a></li>
+<li><a href="scripting-1.htm#inline-documentation-for-external-scripts"><span class="secno">4.11.1.3 Инлайн-документация для внешних скриптов</span></a></li>
+<li><a href="scripting-1.htm#scriptTagXSLT"><span class="secno">4.11.1.4 Взаимодействие элементов</span> <code>script</code> и XSLT</a></li>
+</ul>
+</li>
+<li><a href="scripting-1.htm#the-noscript-element"><span class="secno">4.11.2 Элемент</span> <code>noscript</code></a></li>
+<li><a href="scripting-1.htm#the-template-element"><span class="secno">4.11.3 Элемент</span> <code>template</code></a><ul class="toc">
+<li><a href="scripting-1.htm#template-XSLT-XPath"><span class="secno">4.11.3.1 Взаимодействие элементов </span><code>template</code><span class="secno"> с XSLT и XPath</span><code></code></a></li>
+</ul>
+</li>
+<li><a href="scripting-1.htm#the-canvas-element"><span class="secno">4.11.4 Элемент</span> <code>canvas</code></a>
+<ul class="toc">
+<li><a href="scripting-1.htm#color-spaces-and-color-correction"><span class="secno">4.11.4.1 Цветовые пространства и цветокоррекция</span></a></li>
+<li><a href="scripting-1.htm#serializing-bitmaps-to-a-file"><span class="secno">4.11.4.2 Сериализация растровых изображений в файл</span></a></li>
+<li><a href="scripting-1.htm#security-with-canvas-elements"><span class="secno">4.11.4.3 Безопасность с элементами</span> <code>canvas</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="common-idioms.htm#common-idioms"><span class="secno">4.12 Общие идиомы без конкретных выделенных элементов</span></a>
+<ul class="toc">
+<li><a href="common-idioms.htm#sub-head"><span class="secno">4.12.1 Подзаголовки, субтитры, альтернативные названия и слоганы</span></a></li>
+<li><a href="common-idioms.htm#rel-up"><span class="secno">4.12.2 Bread crumb навигация</span></a></li>
+<li><a href="common-idioms.htm#tag-clouds"><span class="secno">4.12.3 Облака тэгов</span></a></li>
+<li><a href="common-idioms.htm#conversations"><span class="secno">4.12.4 Беседы</span></a></li>
+<li><a href="common-idioms.htm#footnotes"><span class="secno">4.12.5 Сноски</span></a></li>
+</ul>
+</li>
+<li><a href="disabled-elements.htm#disabled-elements"><span class="secno">4.13 Отключённые элементы</span></a></li>
+<li><a href="disabled-elements.htm#selectors"><span class="secno">4.14 Совпадение HTML-элементов с использованием селекторов</span></a>
+<ul class="toc">
+<li><a href="disabled-elements.htm#case-sensitivity"><span class="secno">4.14.1 Чувствительность к регистру символов</span></a></li>
+<li><a href="disabled-elements.htm#pseudo-classes"><span class="secno">4.14.2 Псевдоклассы</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="browsers.htm#browsers"><span class="secno">5 Загрузка вэб-страниц</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#windows"><span class="secno">5.1 Контексты браузинга</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#nested-browsing-contexts"><span class="secno">5.1.1 Вложение контекстов браузинга</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#navigating-nested-browsing-contexts-in-the-dom"><span class="secno">5.1.1.1 Навигация по вложенным контекстам браузинга в DOM</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#auxiliary-browsing-contexts"><span class="secno">5.1.2 Вспомогательные контексты браузинга</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#navigating-auxiliary-browsing-contexts-in-the-dom"><span class="secno">5.1.2.1 Навигация по вспомогательным контекстам браузинга в DOM</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#secondary-browsing-contexts"><span class="secno">5.1.3 Вторичные контексты браузинга</span></a></li>
+<li><a href="browsers.htm#security-nav"><span class="secno">5.1.4 Безопасность</span></a></li>
+<li><a href="browsers.htm#groupings-of-browsing-contexts"><span class="secno">5.1.5 Группировки контекстов браузинга</span></a></li>
+<li><a href="browsers.htm#browsing-context-names"><span class="secno">5.1.6 Имена контекстов браузинга</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#the-window-object"><span class="secno">5.2 Объект</span> <code>Window</code></a>
+<ul class="toc">
+<li><a href="browsers.htm#security-window"><span class="secno">5.2.1 Безопасность</span></a></li>
+<li><a href="browsers.htm#apis-for-creating-and-navigating-browsing-contexts-by-name"><span class="secno">5.2.2 API для создания и навигации по контекстам браузинга по имени</span></a></li>
+<li><a href="browsers.htm#accessing-other-browsing-contexts"><span class="secno">5.2.3 Доступ к другим контекстам браузинга</span></a></li>
+<li><a href="browsers.htm#named-access-on-the-window-object"><span class="secno">5.2.4 Именованный доступ к объекту</span> <code>Window</code></a></li>
+<li><a href="browsers.htm#garbage-collection-and-browsing-contexts"><span class="secno">5.2.5 Сбор мусора и контексты браузинга</span></a></li>
+<li><a href="browsers.htm#closing-browsing-contexts"><span class="secno">5.2.6 Закрытие контекстов браузинга</span></a></li>
+<li><a href="browsers.htm#browser-interface-elements"><span class="secno">5.2.7 Элементы интерфейса браузера</span></a></li>
+<li><a href="browsers.htm#the-windowproxy-object"><span class="secno">5.2.8 Объект</span> <code>WindowProxy</code></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#origin"><span class="secno">5.3 Источник происхождения</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#relaxing-the-same-origin-restriction"><span class="secno">5.3.1 Ослабление ограничения единого происхождения</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#sandboxing"><span class="secno">5.4 Песочница</span></a></li>
+<li><a href="browsers.htm#history"><span class="secno">5.5 История сессий и навигация</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#the-session-history-of-browsing-contexts"><span class="secno">5.5.1 История сессий контекстов браузинга</span></a></li>
+<li><a href="browsers.htm#the-history-interface"><span class="secno">5.5.2 Интерфейс</span> <code>History</code></a></li>
+<li><a href="browsers.htm#the-location-interface"><span class="secno">5.5.3 Интерфейс</span> <code>Location</code></a>
+<ul class="toc">
+<li><a href="browsers.htm#security-location"><span class="secno">5.5.3.1 Безопасность</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#history-notes"><span class="secno">5.5.4 Замечания по реализации для истории сессий</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#browsing-the-web"><span class="secno">5.6 Браузинг Web</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#navigating-across-documents"><span class="secno">5.6.1 Навигация по документам</span></a></li>
+<li><a href="browsers.htm#read-html"><span class="secno">5.6.2 Модель процессинга загрузки страницы для HTML-файлов</span></a></li>
+<li><a href="browsers.htm#read-xml"><span class="secno">5.6.3 Модель процессинга загрузки страницы для XML-файлов</span></a></li>
+<li><a href="browsers.htm#read-text"><span class="secno">5.6.4 Модель процессинга загрузки страницы для текстовых файлов</span></a></li>
+<li><a href="browsers.htm#read-multipart-x-mixed-replace"><span class="secno">5.6.5 Модель процессинга загрузки страницы для ресурсов</span> <code>multipart/x-mixed-replace</code></a></li>
+<li><a href="browsers.htm#read-media"><span class="secno">5.6.6 Модель процессинга загрузки страницы для медиа</span></a></li>
+<li><a href="browsers.htm#read-plugin"><span class="secno">5.6.7 Модель процессинга загрузки страницы для содержимого, использующего плагины</span></a></li>
+<li><a href="browsers.htm#read-ua-inline"><span class="secno">5.6.8 Модель процессинга загрузки страницы для инлайн-содержимого, не имеющего DOM</span></a></li>
+<li><a href="browsers.htm#scroll-to-fragid"><span class="secno">5.6.9 Навигация к идентификатору фрагмента</span></a></li>
+<li><a href="browsers.htm#history-traversal"><span class="secno">5.6.10 Проход по истории</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#event-definitions-0"><span class="secno">5.6.10.1 Определения событий</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#unloading-documents"><span class="secno">5.6.11 Выгрузка документов</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#event-definition"><span class="secno">5.6.11.1 Определение событий</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#aborting-a-document-load"><span class="secno">5.6.12 Прерывание загрузки документа</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#offline"><span class="secno">5.7 Офлайновые вэб-приложения</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#introduction-3"><span class="secno">5.7.1 Введение</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#supporting-offline-caching-for-legacy-applications"><span class="secno">5.7.1.1 Поддержка офлайн-кэширования для наследуемых приложений</span></a></li>
+<li><a href="browsers.htm#appcacheevents"><span class="secno">5.7.1.2 События: резюме</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#appcache"><span class="secno">5.7.2 Кэши приложений</span></a></li>
+<li><a href="browsers.htm#manifests"><span class="secno">5.7.3 Синтаксис манифеста кэша</span></a>
+<ul class="toc">
+<li><a href="browsers.htm#some-sample-manifests"><span class="secno">5.7.3.1 Примеры манифестов</span></a></li>
+<li><a href="browsers.htm#writing-cache-manifests"><span class="secno">5.7.3.2 Написание манифестов кэша</span></a></li>
+<li><a href="browsers.htm#parsing-cache-manifests"><span class="secno">5.7.3.3 Парсинг манифестов кэша</span></a></li>
+</ul>
+</li>
+<li><a href="browsers.htm#downloading-or-updating-an-application-cache"><span class="secno">5.7.4 Загрузка или обновление кэша приложения</span></a></li>
+<li><a href="browsers.htm#the-application-cache-selection-algorithm"><span class="secno">5.7.5 Алгоритм выбора кэша приложения</span></a></li>
+<li><a href="browsers.htm#changesToNetworkingModel"><span class="secno">5.7.6 Изменения в сетевой модели</span></a></li>
+<li><a href="browsers.htm#expiring-application-caches"><span class="secno">5.7.7 Окончание срока действия кэша приложения</span></a></li>
+<li><a href="browsers.htm#disk-space"><span class="secno">5.7.8 Дисковое пространство</span></a></li>
+<li><a href="browsers.htm#application-cache-api"><span class="secno">5.7.9 API кэша приложения</span></a></li>
+<li><a href="browsers.htm#browser-state"><span class="secno">5.7.10 Статус браузера</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="webappapis.htm#webappapis"><span class="secno">6 API вэб-приложений</span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#scripting"><span class="secno">6.1 Скриптинг</span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#introduction-4"><span class="secno">6.1.1 Введение</span></a></li>
+<li><a href="webappapis.htm#enabling-and-disabling-scripting"><span class="secno">6.1.2 Включение и отключение скриптинга</span></a></li>
+<li><a href="webappapis.htm#processing-model-2"><span class="secno">6.1.3 Модель процессинга</span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#definitions-0"><span class="secno">6.1.3.1 Определения</span></a></li>
+<li><a href="webappapis.htm#script-settings-for-browsing-contexts"><span class="secno">6.1.3.2 Настройки скриптов для контекста браузинга</span></a></li>
+<li><a href="webappapis.htm#calling-scripts"><span class="secno">6.1.3.3 Вызов скрипта</span></a></li>
+<li><a href="webappapis.htm#creating-scripts"><span class="secno">6.1.3.4 Создание скрипта</span></a></li>
+<li><a href="webappapis.htm#killing-scripts"><span class="secno">6.1.3.5 Уничтожение скрипта</span></a></li>
+<li><a href="webappapis.htm#runtime-script-errors"><span class="secno">6.1.3.6 Ошибки времени выполнения скрипта</span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#runtime-script-errors-in-documents"><span class="secno">6.1.3.6.1 Ошибки времени выполнения скрипта в документах</span></a></li>
+<li><a href="webappapis.htm#the-errorevent-interface"><span class="secno">6.1.3.6.2 Интерфейс</span> <code>ErrorEvent</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="webappapis.htm#event-loops"><span class="secno">6.1.4 Циклы событий</span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#definitions-1"><span class="secno">6.1.4.1 Определения</span></a></li>
+<li><a href="webappapis.htm#processing-model-3"><span class="secno">6.1.4.2 Модель процессинга</span></a></li>
+<li><a href="webappapis.htm#generic-task-sources"><span class="secno">6.1.4.3 Общие источники задач</span></a></li>
+</ul>
+</li>
+<li><a href="webappapis.htm#events"><span class="secno">6.1.5 События</span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#event-handler-attributes"><span class="secno">6.1.5.1 Обработчики событий</span></a></li>
+<li><a href="webappapis.htm#event-handlers-on-elements,-document-objects,-and-window-objects"><span class="secno">6.1.5.2 Обработчики событий в элементах, Document-объектах и</span><code></code> <code>
+Window</code>-объектах</a>
+<ul class="toc">
+<li><a href="webappapis.htm#idl-definitions"><span class="secno">6.1.5.2.1 IDL-определения</span></a></li>
+</ul>
+</li>
+<li><a href="webappapis.htm#event-firing"><span class="secno">6.1.5.3 Выстреливание события</span></a></li>
+<li><a href="webappapis.htm#events-and-the-window-object"><span class="secno">6.1.5.4 События и объект</span> <code>Window</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="webappapis.htm#atob"><span class="secno">6.2 Методы утилиты Base64</span></a></li>
+<li><a href="webappapis.htm#dynamic-markup-insertion"><span class="secno">6.3 Динамическая вставка разметки </span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#opening-the-input-stream"><span class="secno">6.3.1 Открытие потока ввода</span></a></li>
+<li><a href="webappapis.htm#closing-the-input-stream"><span class="secno">6.3.2 Закрытие потока ввода</span></a></li>
+<li><a href="webappapis.htm#document.write()"><span class="secno">6.3.3 </span><code data-anolis-xref="dom-document-write">document.write()</code></a></li>
+<li><a href="webappapis.htm#document.writeln()"><span class="secno">6.3.4 </span><code data-anolis-xref="dom-document-writeln">document.writeln()</code></a></li>
+</ul>
+</li>
+<li><a href="webappapis.htm#timers"><span class="secno">6.4 Таймеры</span></a></li>
+<li><a href="webappapis.htm#user-prompts"><span class="secno">6.5 Пользовательские промпты</span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#simple-dialogs"><span class="secno">6.5.1 Простые диалоги</span></a></li>
+<li><a href="webappapis.htm#printing"><span class="secno">6.5.2 Печать</span></a></li>
+</ul>
+</li>
+<li><a href="webappapis.htm#system-state-and-capabilities"><span class="secno">6.6 Статус системы и возможности</span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#the-navigator-object"><span class="secno">6.6.1 Объект</span> <code>Navigator</code></a>
+<ul class="toc">
+<li><a href="webappapis.htm#client-identification"><span class="secno">6.6.1.1 Идентификация клиента</span></a></li>
+<li><a href="webappapis.htm#language-preferences"><span class="secno">6.6.1.2 Языковые предпочтения</span></a></li>
+<li><a href="webappapis.htm#custom-handlers"><span class="secno">6.6.1.3 Пользовательская схема и обработчики событий</span></a>
+<ul class="toc">
+<li><a href="webappapis.htm#security-and-privacy"><span class="secno">6.6.1.3.1 Безопасность и конфиденциальность</span></a></li>
+<li><a href="webappapis.htm#sample-handler-impl"><span class="secno">6.6.1.3.2 Пример пользовательского интерфейса</span></a></li>
+</ul>
+</li>
+<li><a href="webappapis.htm#manually-releasing-the-storage-mutex"><span class="secno">6.6.1.4 Ручное освобождение mutex-хранилища</span></a></li>
+<li><a href="webappapis.htm#plugins-0"><span class="secno">6.6.1.5 Плагины</span></a></li>
+</ul>
+</li>
+<li><a href="webappapis.htm#the-external-interface"><span class="secno">6.6.2 Интерфейс</span> <code>External</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="editing.htm#editing"><span class="secno">7 Взаимодействие с пользователем</span></a>
+<ul class="toc">
+<li><a href="editing.htm#the-hidden-attribute"><span class="secno">7.1 Атрибут</span> <code>hidden</code></a></li>
+<li><a href="editing.htm#inert-subtrees"><span class="secno">7.2 Инертные поддеревья</span></a></li>
+<li><a href="editing.htm#activation"><span class="secno">7.3 Активация</span></a></li>
+<li><a href="editing.htm#focus"><span class="secno">7.4 Фокус</span></a>
+<ul class="toc">
+<li><a href="editing.htm#sequential-focus-navigation-and-the-tabindex-attribute"><span class="secno">7.4.1 Последовательная навигация фокуса и атрибут</span> <code data-anolis-xref="attr-tabindex">tabindex</code></a></li>
+<li><a href="editing.htm#focus-management"><span class="secno">7.4.2 Управление фокусом</span></a></li>
+<li><a href="editing.htm#document-level-focus-apis"><span class="secno">7.4.3 API фокуса уровня документа</span></a></li>
+<li><a href="editing.htm#element-level-focus-apis"><span class="secno">7.4.4 API фокуса уровня элемента</span></a></li>
+</ul>
+</li>
+<li><a href="editing.htm#assigning-keyboard-shortcuts"><span class="secno">7.5 Назначение &quot;горячих&quot; клавиш</span></a>
+<ul class="toc">
+<li><a href="editing.htm#introduction-5"><span class="secno">7.5.1 Введение</span></a></li>
+<li><a href="editing.htm#the-accesskey-attribute"><span class="secno">7.5.2 Атрибут</span> <code>accesskey</code></a></li>
+<li><a href="editing.htm#processing-model-4"><span class="secno">7.5.3 Модель процессинга</span></a></li>
+</ul>
+</li>
+<li><a href="editing.htm#editing-0"><span class="secno">7.6 Редактирование</span></a>
+<ul class="toc">
+<li><a href="editing.htm#contenteditable"><span class="secno">7.6.1 Включение возможности редактирования областей документа: атрибут содержимого</span> <code data-anolis-xref="attr-contenteditable">contenteditable</code></a></li>
+<li><a href="editing.htm#making-entire-documents-editable:-the-designmode-idl-attribute"><span class="secno">7.6.2 Включение возможности редактирования всего документа: IDL-атрибут</span>
+<code data-anolis-xref="dom-document-designMode">designMode</code></a></li>
+<li><a href="editing.htm#best-practices-for-in-page-editors"><span class="secno">7.6.3 Лучшая практика для in-page редакторов</span></a></li>
+<li><a href="editing.htm#editing-apis"><span class="secno">7.6.4 API редактирования</span></a></li>
+<li><a href="editing.htm#spelling-and-grammar-checking"><span class="secno">7.6.5 Проверка грамматики и орфографии</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="syntax.htm#syntax"><span class="secno">8 HTML-синтаксис</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#writing"><span class="secno">8.1 Написание HTML-документов</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#the-doctype"><span class="secno">8.1.1 DOCTYPE</span></a></li>
+<li><a href="syntax.htm#elements-0"><span class="secno">8.1.2 Элементы</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#start-tags"><span class="secno">8.1.2.1 Открывающие тэги</span></a></li>
+<li><a href="syntax.htm#end-tags"><span class="secno">8.1.2.2 Закрывающие тэги</span></a></li>
+<li><a href="syntax.htm#attributes-0"><span class="secno">8.1.2.3 Атрибуты</span></a></li>
+<li><a href="syntax.htm#optional-tags"><span class="secno">8.1.2.4 Опционные тэги</span></a></li>
+<li><a href="syntax.htm#element-restrictions"><span class="secno">8.1.2.5 Ограничения моделей содержимого</span></a></li>
+<li><a href="syntax.htm#cdata-rcdata-restrictions"><span class="secno">8.1.2.6 Ограничения для содержимого сырого текста и мнемонизация элементов сырого текста</span></a></li>
+</ul>
+</li>
+<li><a href="syntax.htm#text"><span class="secno">8.1.3 Текст</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#newlines"><span class="secno">8.1.3.1 Новая строка</span></a></li>
+</ul>
+</li>
+<li><a href="syntax.htm#character-references"><span class="secno">8.1.4 Ссылки на символы</span></a></li>
+<li><a href="syntax.htm#cdata-sections"><span class="secno">8.1.5 Разделы CDATA</span></a></li>
+<li><a href="syntax.htm#comments"><span class="secno">8.1.6 Комментарии</span></a></li>
+</ul>
+</li>
+<li><a href="syntax.htm#parsing"><span class="secno">8.2 Парсинг HTML-документов</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#overview-of-the-parsing-model"><span class="secno">8.2.1 Обзор модели парсинга</span></a></li>
+<li><a href="syntax.htm#the-input-byte-stream"><span class="secno">8.2.2 Входной байтовый поток</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#parsing-with-a-known-character-encoding"><span class="secno">8.2.2.1 Парсинг с известной кодировкой символов</span></a></li>
+<li><a href="syntax.htm#determining-the-character-encoding"><span class="secno">8.2.2.2 Определение кодировки символов</span></a></li>
+<li><a href="syntax.htm#character-encodings"><span class="secno">8.2.2.3 Кодировки символов</span></a></li>
+<li><a href="syntax.htm#changing-the-encoding-while-parsing"><span class="secno">8.2.2.4 Определение кодировки во время парсинга</span></a></li>
+<li><a href="syntax.htm#preprocessing-the-input-stream"><span class="secno">8.2.2.5 Препроцессинг входного потока</span></a></li>
+</ul>
+</li>
+<li><a href="syntax.htm#parse-state"><span class="secno">8.2.3 Статус парсинга</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#the-insertion-mode"><span class="secno">8.2.3.1 Режим вставки</span></a></li>
+<li><a href="syntax.htm#the-stack-of-open-elements"><span class="secno">8.2.3.2 Стэк открытых элементов</span></a></li>
+<li><a href="syntax.htm#the-list-of-active-formatting-elements"><span class="secno">8.2.3.3 Список активных элементов форматирования</span></a></li>
+<li><a href="syntax.htm#the-element-pointers"><span class="secno">8.2.3.4 Указатели на элементы</span></a></li>
+<li><a href="syntax.htm#other-parsing-state-flags"><span class="secno">8.2.3.5 Другие флаги статуса парсинга</span></a></li>
+</ul>
+</li>
+<li><a href="syntax.htm#tokenization"><span class="secno">8.2.4 Мнемонизация</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#data-state"><span class="secno">8.2.4.1 Статус данных</span></a></li>
+<li><a href="syntax.htm#character-reference-in-data-state"><span class="secno">8.2.4.2 Ссылка на символ в статусе данных</span></a></li>
+<li><a href="syntax.htm#rcdata-state"><span class="secno">8.2.4.3 Статус RCDATA</span></a></li>
+<li><a href="syntax.htm#character-reference-in-rcdata-state"><span class="secno">8.2.4.4 Ссылка на символ в статусе RCDATA</span></a></li>
+<li><a href="syntax.htm#rawtext-state"><span class="secno">8.2.4.5 Статус RAWTEXT</span></a></li>
+<li><a href="syntax.htm#script-data-state"><span class="secno">8.2.4.6 Статус данных скрипта</span></a></li>
+<li><a href="syntax.htm#plaintext-state"><span class="secno">8.2.4.7 Статус PLAINTEXT</span></a></li>
+<li><a href="syntax.htm#tag-open-state"><span class="secno">8.2.4.8 Статус Tag open</span></a></li>
+<li><a href="syntax.htm#end-tag-open-state"><span class="secno">8.2.4.9 Статус End tag open</span></a></li>
+<li><a href="syntax.htm#tag-name-state"><span class="secno">8.2.4.10 Статус Tag name</span></a></li>
+<li><a href="syntax.htm#rcdata-less-than-sign-state"><span class="secno">8.2.4.11 Статус RCDATA less-than sign</span></a></li>
+<li><a href="syntax.htm#rcdata-end-tag-open-state"><span class="secno">8.2.4.12 Статус RCDATA end tag open</span></a></li>
+<li><a href="syntax.htm#rcdata-end-tag-name-state"><span class="secno">8.2.4.13 Статус RCDATA end tag name</span></a></li>
+<li><a href="syntax.htm#rawtext-less-than-sign-state"><span class="secno">8.2.4.14 Статус RAWTEXT less-than sign</span></a></li>
+<li><a href="syntax.htm#rawtext-end-tag-open-state"><span class="secno">8.2.4.15 Статус RAWTEXT end tag open</span></a></li>
+<li><a href="syntax.htm#rawtext-end-tag-name-state"><span class="secno">8.2.4.16 Статус RAWTEXT end tag name</span></a></li>
+<li><a href="syntax.htm#script-data-less-than-sign-state"><span class="secno">8.2.4.17 Статус скриптовых данных less-than sign</span></a></li>
+<li><a href="syntax.htm#script-data-end-tag-open-state"><span class="secno">8.2.4.18 Статус скриптовых данных end tag open</span></a></li>
+<li><a href="syntax.htm#script-data-end-tag-name-state"><span class="secno">8.2.4.19 Статус скриптовых данных end tag name</span></a></li>
+<li><a href="syntax.htm#script-data-escape-start-state"><span class="secno">8.2.4.20 Статус скриптовых данных escape start</span></a></li>
+<li><a href="syntax.htm#script-data-escape-start-dash-state"><span class="secno">8.2.4.21 Статус скриптовых данных escape start dash</span></a></li>
+<li><a href="syntax.htm#script-data-escaped-state"><span class="secno">8.2.4.22 Статус скриптовых данных escaped</span></a></li>
+<li><a href="syntax.htm#script-data-escaped-dash-state"><span class="secno">8.2.4.23 Статус скриптовых данных escaped dash</span></a></li>
+<li><a href="syntax.htm#script-data-escaped-dash-dash-state"><span class="secno">8.2.4.24 Статус скриптовых данных escaped dash dash</span></a></li>
+<li><a href="syntax.htm#script-data-escaped-less-than-sign-state"><span class="secno">8.2.4.25 Статус скриптовых данных escaped less-than sign</span></a></li>
+<li><a href="syntax.htm#script-data-escaped-end-tag-open-state"><span class="secno">8.2.4.26 Статус скриптовых данных escaped end tag open</span></a></li>
+<li><a href="syntax.htm#script-data-escaped-end-tag-name-state"><span class="secno">8.2.4.27 Статус скриптовых данных escaped end tag name</span></a></li>
+<li><a href="syntax.htm#script-data-double-escape-start-state"><span class="secno">8.2.4.28 Статус скриптовых данных double escape start</span></a></li>
+<li><a href="syntax.htm#script-data-double-escaped-state"><span class="secno">8.2.4.29 Статус скриптовых данных double escaped</span></a></li>
+<li><a href="syntax.htm#script-data-double-escaped-dash-state"><span class="secno">8.2.4.30 Статус скриптовых данных double escaped dash</span></a></li>
+<li><a href="syntax.htm#script-data-double-escaped-dash-dash-state"><span class="secno">8.2.4.31 Статус скриптовых данных double escaped dash dash</span></a></li>
+<li><a href="syntax.htm#script-data-double-escaped-less-than-sign-state"><span class="secno">8.2.4.32 Статус скриптовых данных double escaped less-than sign</span></a></li>
+<li><a href="syntax.htm#script-data-double-escape-end-state"><span class="secno">8.2.4.33 Статус скриптовых данных double escape end</span></a></li>
+<li><a href="syntax.htm#before-attribute-name-state"><span class="secno">8.2.4.34 Статус Before attribute name</span></a></li>
+<li><a href="syntax.htm#attribute-name-state"><span class="secno">8.2.4.35 Статус Attribute name</span></a></li>
+<li><a href="syntax.htm#after-attribute-name-state"><span class="secno">8.2.4.36 Статус After attribute name</span></a></li>
+<li><a href="syntax.htm#before-attribute-value-state"><span class="secno">8.2.4.37 Статус Before attribute value</span></a></li>
+<li><a href="syntax.htm#attribute-value-(double-quoted)-state"><span class="secno">8.2.4.38 Статус Attribute value (double-quoted)</span></a></li>
+<li><a href="syntax.htm#attribute-value-(single-quoted)-state"><span class="secno">8.2.4.39 Статус Attribute value (single-quoted)</span></a></li>
+<li><a href="syntax.htm#attribute-value-(unquoted)-state"><span class="secno">8.2.4.40 Статус Attribute value (unquoted)</span></a></li>
+<li><a href="syntax.htm#character-reference-in-attribute-value-state"><span class="secno">8.2.4.41 Статус Character reference in attribute value</span></a></li>
+<li><a href="syntax.htm#after-attribute-value-(quoted)-state"><span class="secno">8.2.4.42 Статус After attribute value (quoted)</span></a></li>
+<li><a href="syntax.htm#self-closing-start-tag-state"><span class="secno">8.2.4.43 Статус Self-closing start tag</span></a></li>
+<li><a href="syntax.htm#bogus-comment-state"><span class="secno">8.2.4.44 Статус Bogus comment</span></a></li>
+<li><a href="syntax.htm#markup-declaration-open-state"><span class="secno">8.2.4.45 Статус Markup declaration open</span></a></li>
+<li><a href="syntax.htm#comment-start-state"><span class="secno">8.2.4.46 Статус Comment start</span></a></li>
+<li><a href="syntax.htm#comment-start-dash-state"><span class="secno">8.2.4.47 Статус Comment start dash</span></a></li>
+<li><a href="syntax.htm#comment-state"><span class="secno">8.2.4.48 Статус Comment</span></a></li>
+<li><a href="syntax.htm#comment-end-dash-state"><span class="secno">8.2.4.49 Статус Comment end dash</span></a></li>
+<li><a href="syntax.htm#comment-end-state"><span class="secno">8.2.4.50 Статус Comment end</span></a></li>
+<li><a href="syntax.htm#comment-end-bang-state"><span class="secno">8.2.4.51 Статус Comment end bang</span></a></li>
+<li><a href="syntax.htm#doctype-state"><span class="secno">8.2.4.52 Статус DOCTYPE</span></a></li>
+<li><a href="syntax.htm#before-doctype-name-state"><span class="secno">8.2.4.53 Статус Before DOCTYPE name</span></a></li>
+<li><a href="syntax.htm#doctype-name-state"><span class="secno">8.2.4.54 Статус DOCTYPE name</span></a></li>
+<li><a href="syntax.htm#after-doctype-name-state"><span class="secno">8.2.4.55 Статус After DOCTYPE name</span></a></li>
+<li><a href="syntax.htm#after-doctype-public-keyword-state"><span class="secno">8.2.4.56 Статус After DOCTYPE public keyword</span></a></li>
+<li><a href="syntax.htm#before-doctype-public-identifier-state"><span class="secno">8.2.4.57 Статус Before DOCTYPE public identifier</span></a></li>
+<li><a href="syntax.htm#doctype-public-identifier-(double-quoted)-state"><span class="secno">8.2.4.58 Статус DOCTYPE public identifier (double-quoted)</span></a></li>
+<li><a href="syntax.htm#doctype-public-identifier-(single-quoted)-state"><span class="secno">8.2.4.59 Статус DOCTYPE public identifier (single-quoted)</span></a></li>
+<li><a href="syntax.htm#after-doctype-public-identifier-state"><span class="secno">8.2.4.60 Статус After DOCTYPE public identifier</span></a></li>
+<li><a href="syntax.htm#between-doctype-public-and-system-identifiers-state"><span class="secno">8.2.4.61 Статус Between DOCTYPE public and system identifiers</span></a></li>
+<li><a href="syntax.htm#after-doctype-system-keyword-state"><span class="secno">8.2.4.62 Статус After DOCTYPE system keyword</span></a></li>
+<li><a href="syntax.htm#before-doctype-system-identifier-state"><span class="secno">8.2.4.63 Статус Before DOCTYPE system identifier</span></a></li>
+<li><a href="syntax.htm#doctype-system-identifier-(double-quoted)-state"><span class="secno">8.2.4.64 Статус DOCTYPE system identifier (double-quoted)</span></a></li>
+<li><a href="syntax.htm#doctype-system-identifier-(single-quoted)-state"><span class="secno">8.2.4.65 Статус DOCTYPE system identifier (single-quoted)</span></a></li>
+<li><a href="syntax.htm#after-doctype-system-identifier-state"><span class="secno">8.2.4.66 Статус After DOCTYPE system identifier</span></a></li>
+<li><a href="syntax.htm#bogus-doctype-state"><span class="secno">8.2.4.67 Статус Bogus DOCTYPE</span></a></li>
+<li><a href="syntax.htm#cdata-section-state"><span class="secno">8.2.4.68 Статус CDATA section</span></a></li>
+<li><a href="syntax.htm#tokenizing-character-references"><span class="secno">8.2.4.69 Мнемонизация ссылок на символы</span></a></li>
+</ul>
+</li>
+<li><a href="syntax.htm#tree-construction"><span class="secno">8.2.5 Конструирование дерева</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#creating-and-inserting-nodes"><span class="secno">8.2.5.1 Создание и вставка узлов</span></a></li>
+<li><a href="syntax.htm#parsing-elements-that-contain-only-text"><span class="secno">8.2.5.2 Элементы парсинга, содержащие только текст</span></a></li>
+<li><a href="syntax.htm#closing-elements-that-have-implied-end-tags"><span class="secno">8.2.5.3 Закрывающие элементы, имеющие неявные закрывающие тэги</span></a></li>
+<li><a href="syntax.htm#parsing-main-inhtml"><span class="secno">8.2.5.4 Правила парсинга лексем в HTML-содержимом</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#the-initial-insertion-mode"><span class="secno">8.2.5.4.1 Режим вставки "initial"</span></a></li>
+<li><a href="syntax.htm#the-before-html-insertion-mode"><span class="secno">8.2.5.4.2 Режим вставки &quot;before html&quot;</span></a></li>
+<li><a href="syntax.htm#the-before-head-insertion-mode"><span class="secno">8.2.5.4.3 Режим вставки &quot;before head&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-inhead"><span class="secno">8.2.5.4.4 Режим вставки &quot;in head&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-inheadnoscript"><span class="secno">8.2.5.4.5 Режим вставки &quot;in head noscript&quot;</span></a></li>
+<li><a href="syntax.htm#the-after-head-insertion-mode"><span class="secno">8.2.5.4.6 Режим вставки &quot;after head&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-inbody"><span class="secno">8.2.5.4.7 Режим вставки &quot;in body&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-incdata"><span class="secno">8.2.5.4.8 Режим вставки &quot;text&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-intable"><span class="secno">8.2.5.4.9 Режим вставки &quot;in table&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-intabletext"><span class="secno">8.2.5.4.10 Режим вставки &quot;in table text&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-incaption"><span class="secno">8.2.5.4.11 Режим вставки &quot;in caption&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-incolgroup"><span class="secno">8.2.5.4.12 Режим вставки &quot;in column group&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-intbody"><span class="secno">8.2.5.4.13 Режим вставки &quot;in table body&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-intr"><span class="secno">8.2.5.4.14 Режим вставки &quot;in row&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-intd"><span class="secno">8.2.5.4.15 Режим вставки &quot;in cell&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-inselect"><span class="secno">8.2.5.4.16 Режим вставки &quot;in select&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-inselectintable"><span class="secno">8.2.5.4.17 Режим вставки &quot;in select in table&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-intemplate"><span class="secno">8.2.5.4.18 Режим вставки &quot;in template&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-afterbody"><span class="secno">8.2.5.4.19 Режим вставки &quot;after body&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-inframeset"><span class="secno">8.2.5.4.20 Режим вставки &quot;in frameset&quot;</span></a></li>
+<li><a href="syntax.htm#parsing-main-afterframeset"><span class="secno">8.2.5.4.21 Режим вставки &quot;after frameset&quot;</span></a></li>
+<li><a href="syntax.htm#the-after-after-body-insertion-mode"><span class="secno">8.2.5.4.22 Режим вставки &quot;after after body&quot;</span></a></li>
+<li><a href="syntax.htm#the-after-after-frameset-insertion-mode"><span class="secno">8.2.5.4.23 Режим вставки &quot;after after frameset&quot;</span></a></li>
+</ul>
+</li>
+<li><a href="syntax.htm#parsing-main-inforeign"><span class="secno">8.2.5.5 Правила парсинга лексем в постороннем содержимом</span></a></li>
+</ul>
+</li>
+<li><a href="syntax.htm#the-end"><span class="secno">8.2.6 Завершение</span></a></li>
+<li><a href="syntax.htm#coercing-an-html-dom-into-an-infoset"><span class="secno">8.2.7 Принудительный HTML DOM в infoset</span></a></li>
+<li><a href="syntax.htm#an-introduction-to-error-handling-and-strange-cases-in-the-parser"><span class="secno">8.2.8 Введение в обработку ошибок и странные случаи в парсере</span></a>
+<ul class="toc">
+<li><a href="syntax.htm#misnested-tags:-b-i-/b-/i"><span class="secno">8.2.8.1 Неверное вложение тэгов: &lt;b&gt;&lt;i&gt;&lt;/b&gt;&lt;/i&gt;</span></a></li>
+<li><a href="syntax.htm#misnested-tags:-b-p-/b-/p"><span class="secno">8.2.8.2 Неверное вложение тэгов:</span> &lt;b&gt;&lt;p&gt;&lt;/b&gt;&lt;/p&gt;</a></li>
+<li><a href="syntax.htm#unexpected-markup-in-tables"><span class="secno">8.2.8.3 Неожиданная разметка в таблицах</span></a></li>
+<li><a href="syntax.htm#scripts-that-modify-the-page-as-it-is-being-parsed"><span class="secno">8.2.8.4 Скрипты, изменяющие страницу, когда она находится в процессе парсинга</span></a></li>
+<li><a href="syntax.htm#the-execution-of-scripts-that-are-moving-across-multiple-documents"><span class="secno">8.2.8.5 Выполнение скриптов, которое проходит по нескольким документам</span></a></li>
+<li><a href="syntax.htm#unclosed-formatting-elements"><span class="secno">8.2.8.6 Незакрытые элементы форматирования</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="syntax.htm#serializing-html-fragments"><span class="secno">8.3 Сериализация HTML-фрагментов</span></a></li>
+<li><a href="syntax.htm#parsing-html-fragments"><span class="secno">8.4 Парсинг HTML-фрагментов</span></a></li>
+<li><a href="syntax.htm#named-character-references"><span class="secno">8.4 Именованные ссылки на символы</span></a></li>
+</ul>
+</li>
+<li><a href="the-xhtml-syntax.htm#the-xhtml-syntax"><span class="secno">9 XHTML-синтаксис</span></a>
+<ul class="toc">
+<li><a href="the-xhtml-syntax.htm#writing-xhtml-documents"><span class="secno">9.1 Написание XHTML-документов</span></a></li>
+<li><a href="the-xhtml-syntax.htm#parsing-xhtml-documents"><span class="secno">9.2 Парсинг XHTML-документов</span></a></li>
+<li><a href="the-xhtml-syntax.htm#serializing-xhtml-fragments"><span class="secno">9.3 Сериализация XHTML-фрагментов</span></a></li>
+<li><a href="the-xhtml-syntax.htm#parsing-xhtml-fragments"><span class="secno">9.3 Парсинг XHTML-фрагментов</span></a></li>
+</ul>
+</li>
+<li><a href="rendering.htm#rendering"><span class="secno">10 Отображение</span></a>
+<ul class="toc">
+<li><a href="rendering.htm#introduction-6"><span class="secno">10.1 Введение</span></a></li>
+<li><a href="rendering.htm#the-css-user-agent-style-sheet-and-presentational-hints"><span class="secno">10.2 CSS-таблица стилей пользовательского агента и презентационные тонкости</span></a></li>
+<li><a href="rendering.htm#non-replaced-elements"><span class="secno">10.3 Незамещаемые элементы</span></a>
+<ul class="toc">
+<li><a href="rendering.htm#hidden-elements"><span class="secno">10.3.1 Скрытые элементы</span></a></li>
+<li><a href="rendering.htm#the-page"><span class="secno">10.3.2 Страница</span></a></li>
+<li><a href="rendering.htm#flow-content-0"><span class="secno">10.3.3 Потоковое содержимое</span></a></li>
+<li><a href="rendering.htm#phrasing-content-0"><span class="secno">10.3.4 Фразовое содержимое</span></a></li>
+<li><a href="rendering.htm#bidi-rendering"><span class="secno">10.3.5 Двунаправленный текст</span></a></li>
+<li><a href="rendering.htm#quotes"><span class="secno">10.3.6 Закавычивание</span></a></li>
+<li><a href="rendering.htm#sections-and-headings"><span class="secno">10.3.7 Разделы и заголовки</span></a></li>
+<li><a href="rendering.htm#lists"><span class="secno">10.3.8 Списки</span></a></li>
+<li><a href="rendering.htm#tables"><span class="secno">10.3.9 Таблицы</span></a></li>
+<li><a href="rendering.htm#margin-collapsing-quirks"><span class="secno">10.3.10 Варианты сжатия полей</span></a></li>
+<li><a href="rendering.htm#form-controls"><span class="secno">10.3.11 Элементы управления</span></a></li>
+<li><a href="rendering.htm#the-hr-element-0"><span class="secno">10.3.12 Элемент</span> <code>hr</code></a></li>
+<li><a href="rendering.htm#the-fieldset-and-legend-elements"><span class="secno">10.3.13 Элементы</span> <code>fieldset</code> и <code>legend</code></a></li>
+</ul>
+</li>
+<li><a href="rendering.htm#replaced-elements"><span class="secno">10.4 Замещаемые элементы</span></a>
+<ul class="toc">
+<li><a href="rendering.htm#embedded-content-1"><span class="secno">10.4.1 Внедрённое содержимое</span></a></li>
+<li><a href="rendering.htm#images"><span class="secno">10.4.2 Изображения</span></a></li>
+<li><a href="rendering.htm#attributes-for-embedded-content-and-images"><span class="secno">10.4.3 Атрибуты внедрённого содержимого и изображений</span></a></li>
+<li><a href="rendering.htm#image-maps-1"><span class="secno">10.4.4 Карты изображений</span></a></li>
+</ul>
+</li>
+<li><a href="rendering.htm#bindings"><span class="secno">10.5 Привязка</span></a>
+<ul class="toc">
+<li><a href="rendering.htm#introduction-7"><span class="secno">10.5.1 Введение</span></a></li>
+<li><a href="rendering.htm#the-button-element-0"><span class="secno">10.5.2 Элемент</span> <code>button</code></a></li>
+<li><a href="rendering.htm#the-input-element-as-a-text-entry-widget"><span class="secno">10.5.3 Элемент </span><code>input</code><span class="secno"> как виджет вхождения текста</span><code></code></a></li>
+<li><a href="rendering.htm#the-input-element-as-domain-specific-widgets"><span class="secno">10.5.4 Элемент</span> <code>input</code> как домен-специфичные виджеты</a></li>
+<li><a href="rendering.htm#the-input-element-as-a-range-control"><span class="secno">10.5.5 Элемент</span> <code>input</code> как элемент управления диапазоном</a></li>
+<li><a href="rendering.htm#the-input-element-as-a-color-well"><span class="secno">10.5.6 Элемент</span> <code>input</code> как колесо выбора цвета</a></li>
+<li><a href="rendering.htm#the-input-element-as-a-checkbox-and-radio-button-widgets"><span class="secno">10.5.7 Элемент</span> <code>input</code> как виджеты checkbox и radio button</a></li>
+<li><a href="rendering.htm#the-input-element-as-a-file-upload-control"><span class="secno">10.5.8 Элемент</span> <code>input</code> как элемент управления выгрузки файла</a></li>
+<li><a href="rendering.htm#the-input-element-as-a-button"><span class="secno">10.5.9 Элемент</span> <code>input</code> как кнопка</a></li>
+<li><a href="rendering.htm#the-marquee-element"><span class="secno">10.5.10 Элемент</span> <code>marquee</code></a></li>
+<li><a href="rendering.htm#the-meter-element-0"><span class="secno">10.5.11 Элемент</span> <code>meter</code></a></li>
+<li><a href="rendering.htm#the-progress-element-0"><span class="secno">10.5.12 Элемент</span> <code>progress</code></a></li>
+<li><a href="rendering.htm#the-select-element-0"><span class="secno">10.5.13 Элемент</span> <code>select</code></a></li>
+<li><a href="rendering.htm#the-textarea-element-0"><span class="secno">10.5.14 Элемент</span> <code>textarea</code></a></li>
+<li><a href="rendering.htm#the-keygen-element-0"><span class="secno">10.5.15 Элемент</span> <code>keygen</code></a></li>
+</ul>
+</li>
+<li><a href="rendering.htm#frames-and-framesets"><span class="secno">10.6 Фрэймы и наборы фрэймов</span></a></li>
+<li><a href="rendering.htm#interactive-media"><span class="secno">10.7 Интерактивные носители</span></a>
+<ul class="toc">
+<li><a href="rendering.htm#links,-forms,-and-navigation"><span class="secno">10.7.1 Гиперссылки, формы и навигация</span></a></li>
+<li><a href="rendering.htm#the-title-attribute-0"><span class="secno">10.7.2 Атрибут</span> <code data-anolis-xref="attr-title">title</code></a></li>
+<li><a href="rendering.htm#editing-hosts"><span class="secno">10.7.3 Хосты редактирования</span></a></li>
+<li><a href="rendering.htm#text-rendered-in-native-user-interfaces"><span class="secno">10.7.4 Текст, отображённый в родном пользовательском интерфейсе</span></a></li>
+</ul>
+</li>
+<li><a href="rendering.htm#print-media"><span class="secno">10.8 Печатные носители</span></a></li>
+<li><a href="rendering.htm#unstyled-xml-documents"><span class="secno">10.9 Нестилизованные XML-документы</span></a></li>
+</ul>
+</li>
+<li><a href="obsolete.htm#obsolete"><span class="secno">11 Устаревшие функции</span></a>
+<ul class="toc">
+<li><a href="obsolete.htm#obsolete-but-conforming-features"><span class="secno">11.1 Устаревшие, но соответствующие спецификации функции и элементы</span></a>
+<ul class="toc">
+<li><a href="obsolete.htm#warnings-for-obsolete-but-conforming-features"><span class="secno">11.1.1 Предупреждения об устаревших, но соответствующих спецификации функциях и элементах</span></a></li>
+</ul>
+</li>
+<li><a href="obsolete.htm#non-conforming-features"><span class="secno">11.2 Несоответствующие функции и элементы</span></a></li>
+<li><a href="obsolete.htm#requirements-for-implementations"><span class="secno">11.3 Требования к реализации</span></a>
+<ul class="toc">
+<li><a href="obsolete.htm#the-applet-element"><span class="secno">11.3.1 Элемент</span> <code>applet</code></a></li>
+<li><a href="obsolete.htm#the-marquee-element-0"><span class="secno">11.3.2 Элемент</span> <code>marquee</code></a></li>
+<li><a href="obsolete.htm#frames"><span class="secno">11.3.3 Фрэймы</span></a></li>
+<li><a href="obsolete.htm#other-elements,-attributes-and-apis"><span class="secno">11.3.4 Другие элементы, атрибуты и API</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="iana.htm#iana"><span class="secno">12 Вопросы по IANA</span></a>
+<ul class="toc">
+<li><a href="iana.htm#text/html"><span class="secno">12.1 </span><code>text/html</code></a></li>
+<li><a href="iana.htm#multipart/x-mixed-replace"><span class="secno">12.2 </span><code>multipart/x-mixed-replace</code></a></li>
+<li><a href="iana.htm#application/xhtml+xml"><span class="secno">12.3 </span><code>application/xhtml+xml</code></a></li>
+<li><a href="iana.htm#application/x-www-form-urlencoded"><span class="secno">12.4 </span><code>application/x-www-form-urlencoded</code></a></li>
+<li><a href="iana.htm#text/cache-manifest"><span class="secno">12.5 </span><code>text/cache-manifest</code></a></li>
+<li><a href="iana.htm#web+-scheme-prefix"><span class="secno">12.6 Префикс схемы </span><code>web+</code></a></li>
+</ul>
+</li>
+<li><a href="index.html#index"><span style="background-position: 0% 0%">Индекс</span></a>
+<ul class="toc">
+<li><a href="index.html#elements-1"><span style="background-position: 0% 0%">Элементы</span></a></li>
+<li><a href="index.html#element-content-categories">Категории содержимого элементов</a></li>
+<li><a href="index.html#attributes-1"><span style="background-position: 0% 0%">Атрибуты</span></a></li>
+<li><a href="index.html#element-interfaces">Интерфейсы элементов</a></li>
+<li><a href="index.html#all-interfaces">Все интерфейсы</a></li>
+<li><a href="index.html#events-0"><span style="background-position: 0% 0%">События</span></a></li>
+</ul>
+</li>
+<li><a href="references.htm#references"><span style="background-position: 0% 0%">Ссылки</span></a></li>
+<li><a href="acknowledgments.htm#acknowledgments"><span style="background-position: 0% 0%">Благодарности</span></a></li>
+</ul>
+<!--end-toc-->
+</body>
+</html>

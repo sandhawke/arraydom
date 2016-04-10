@@ -1,7 +1,8 @@
 'use strict'
 
-const htmlparser = require("htmlparser2");
-const debug = require('debug')('lazydom')
+const htmlparser = require("htmlparser2")
+const he = require("he")
+const debug = require('debug')('arraydom')
 const d2 = require('debug')('lazydom.fromHTML')
 const d3 = require('debug')('d3')
 
@@ -29,7 +30,15 @@ const selfClosing = {
   wbr: true
 }
 
-function toHTML (tree, options) {
+function encode (s) {
+  //console.log('ENCODE', JSON.stringify(s))
+  if (typeof s === 'number') {
+    s = '' + s
+  }
+  return he.encode(s, {useNamedReferences: true})
+}
+
+function stringify (tree, options) {
   options = options || {}
   const s = new Serializer(options)
   let indent = 0
@@ -56,6 +65,12 @@ Serializer.prototype.serialize = function (tree, indent) {
   const tag = parts[0]
   debug('parts', parts)
 
+  // 'document' is our pseudo-element for handling the fact that HTML
+  // documents are not trees when you allow comments, doctype, etc.
+  if (tag === 'document') {
+    return children.map(stringify).join('')
+  }
+  
   if (indent >= 0) {
     s += pad.slice(0, (indent) * 2)
   }
@@ -74,6 +89,17 @@ Serializer.prototype.serialize = function (tree, indent) {
       }
     }
   }
+
+  if (tag === 'processinginstruction') {
+    s += '<' + children[0] + '>\n'
+    return s
+  }
+
+  if (tag === 'comment') {
+    s += '<!-- ' + children[0] + '-->\n'
+    return s
+  }
+
   s += '<' + tag
   if (parts.length > 1) {
     s += ' class="' + parts.slice(1).join(' ') + '"'
@@ -92,9 +118,9 @@ Serializer.prototype.serialize = function (tree, indent) {
       }
     }
     if (key.startsWith('style.')) {
-      style += key.slice(6) + ': ' + val + '; '
+      style += key.slice(6) + ': ' + encode(val) + '; '
     } else {
-      s += ' ' + key + '="' + val + '"'
+      s += ' ' + key + '="' + encode(val) + '"'
     }
   }
   if (style !== '') {  // in case we finished the loop without emitting style
@@ -121,7 +147,10 @@ Serializer.prototype.serialize = function (tree, indent) {
     if (typeof child === 'function') {
       throw Error('someone else should have dealt with this first')
     }
-    if (typeof child === 'string' || typeof child === 'number') {
+    if (typeof child === 'string') {
+      s += encode(child)
+    }
+    if (typeof child === 'number') {
       s += child
     }
     if (Array.isArray(child)) {
@@ -140,10 +169,11 @@ Serializer.prototype.serialize = function (tree, indent) {
   return s
 }
 
-function fromHTML (text) {
-  let stack = []
-  let index = -1
-  let parser = new htmlparser.Parser({
+function parseDocument (text) {
+  const wrapper = ['document', {} ] 
+  const stack = [ wrapper ]
+  let index = 0
+  const parser = new htmlparser.Parser({
 	  onopentag: function (name, attribs) {
       d3('open', name)
       d2('open', name, index, stack)
@@ -157,7 +187,7 @@ function fromHTML (text) {
 	  },
 	  ontext: function(text){
 
-      if (text.match(/^\n *$/)) {
+      if (text.match(/^\r?\n *$/)) {
         // Odds are very, very good this is indenting stuff we don't
         // want....   But this is still imperfect.   Make it a flag?
         return
@@ -170,12 +200,18 @@ function fromHTML (text) {
       d3('close', name)
       index--
       d2('leaving: ', index, stack)
-	  }
+	  },
+    oncomment: function(text) {
+      stack[index].push(['comment', {}, text])
+    },
+    onprocessinginstruction: function(name, data) {
+      stack[index].push(['processinginstruction', {name:name}, data])
+    }
   }, {decodeEntities: true})
   parser.write(text)
   parser.end()
   moveClassToTag(stack[0])
-  return stack[0]
+  return wrapper
 }
 
 function moveClassToTag (tree) {
@@ -204,12 +240,23 @@ function moveClassToTag (tree) {
     }
   }
 
-
   for (let child of children) {
     moveClassToTag(child)
   }
 }
 
-module.exports.toHTML = toHTML
-module.exports.fromHTML = fromHTML
+function parseElement (text) {
+  const document = parseDocument(text)
+  if (document.length != 3) {
+    throw new Error('parseElement didnt fine exactly one element, found:', JSON.stringify(document.slice(2)))
+  }
+  return document[2]
+}
 
+module.exports.stringify = stringify
+//module.exports.fromHTML = fromHTML
+
+module.exports.parseDocument = parseDocument
+module.exports.parseElement = parseElement
+
+// console.log('got', JSON.stringify(parse('hello<br><span><br></span>')))
