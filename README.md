@@ -1,5 +1,6 @@
-# lazydom
-Deal with HTML as nested lists
+# arraydom.js
+
+Consider HTML a simple tree of JS arrays — 
 
 Converts back and forth between these two representations:
 
