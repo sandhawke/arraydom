@@ -24,7 +24,7 @@ Converts back and forth between these two representations:
 
 and
 
-```json
+```javascript
 ['html',
   ['head',
     ['title', 'Arraydom Example Page' ]
