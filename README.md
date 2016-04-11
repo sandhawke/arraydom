@@ -101,3 +101,15 @@ attributes.  This might sometimes be better than style sheets.  (TODO)
 
 
 
+## Command line
+
+```bash
+$ arraydom < some-input-file
+```
+or
+```bash
+$ arraydom some-input-file
+```
+
+Sniffs the input to see if it's json, html, or markdown.   converts to either json or html.   
+
