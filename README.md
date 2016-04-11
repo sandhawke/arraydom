@@ -47,29 +47,29 @@ and
 
 Each node is an array:
 
-* The first item is a string like `'div .container #main'`. 
+* The first item is a string like `'div container'`. 
 * The second item may be an attributes object.  If there are no attributes, it may be omited.
 * The remaining items are either strings, numbers, or other nodes.
 
 So `<div a="b">foo</div>"` is `['div', {a:'b'}, 'foo']`
 
-Because there are several different ways to write things (like putting the id in first item string or in the attributes object), it's best to treat nodes as raw structures when creating them, but read them with functions like `arraydom.tag`, `arraydom.attr`, and `arraydom.forEachChild`.
+Because there are several different ways to write things (like putting classes in the first item string or in the attributes object), it's best to treat nodes as raw structures when creating them, but read them with functions like `arraydom.tag`, `arraydom.attr`, and `arraydom.forEachChild`.  (TODO)
 
 ### pseudo-attributes
 
-All attributes with names like `style.foo` or `$foo` are merged
+All attributes with names like `style.foo` (or `$foo` TODO) are merged
 together to form the **style** attributes.
 
 Attributes with names starting with `_` are omitted during conversion
-to HTML.
+to HTML. (TODO)
 
 The special attribute `_inherit` makes it easy to factor out bits that
 are repeated in lots of element's attributes.  Sometimes this is
-better than style sheets.
+better than style sheets.  (TODO)
 
 ### pseudo-elements
 
-`*wrapper` for when your content isn't a proper tree.   (only implemented at the top-level currently.   maybe later we'll allow it inside the tree, as kind of a disappearing-div)
+`*wrapper` for when your content isn't a proper tree.   (only implemented at the top-level currently.   maybe later we'll allow it inside the tree, as kind of a disappearing-div)  (TODO - current called `document`)
 
 `*comment` to represent HTML comments &amp;!-- ... -->
 
@@ -79,24 +79,24 @@ better than style sheets.
 
 `arraydom.toHTML(node)`
 
-`arraydom.toIndentedHTML(node)` tries to cleverly figure out a nice indenting, where that wont mess up the content.   Basically, if an element contains any text children, it's assumed that spacing matters.
+`arraydom.toIndentedHTML(node)` tries to cleverly figure out a nice indenting, where that wont mess up the content.   Basically, if an element contains any text children, it's assumed that spacing matters.  (TODO: currently uses options to toHTML)
 
 `arraydom.fromHTML(string)`
 
 `arraydom.fromMarkdown(string)`
 
-`arraydom.fromDOM(element)`
+`arraydom.fromDOM(element)` (TODO)
 
-`arraydom.toDOM(node)` and then you'll have to attach the result 
+`arraydom.toDOM(node)` and then you'll have to attach the result   (TODO)
 
-`arraydom.attr(node, attrName)` returns the value of the attribute from this node.  Looks in node[1], but also in node[0] for class and id, and follows the _inherit chain
+`arraydom.attr(node, attrName)` returns the value of the attribute from this node.  Looks in node[1], but also in node[0] for class and id, and follows the _inherit chain (TODO)
 
-`arraydom.children(node)`
+`arraydom.children(node)` (TODO)
 
 `arraydom.forEachChild(node, cb)` slightly more efficient than children()
-`arraydom.walk(node, func)` calls func on each node in the tree rooted at `node`
+`arraydom.walk(node, func)` calls func on each node in the tree rooted at `node`  (TODO)
 
-`arraydom.find(keywords, node, func)` like walk, but filtered by keywords, which are the words in a node[0] string.  That is: `arraydom.find('.foo .bar', tree, f)` will call f on every node which has class `foo` or class `bar`.   If you want *and* instead of *or*, run find on one of the keywords and check for the others inside f.
+`arraydom.find(keywords, node, func)` like walk, but filtered by keywords, which are the words in a node[0] string.  That is: `arraydom.find('.foo .bar', tree, f)` will call f on every node which has class `foo` or class `bar`.   If you want *and* instead of *or*, run find on one of the keywords and check for the others inside f.  (TODO)
 
 
 
