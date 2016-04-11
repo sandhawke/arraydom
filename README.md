@@ -47,9 +47,9 @@ and
 
 Each node is an array:
 
-* The first item is a string like `'div container'`, with the element name and optionally classnames.
+* The first item is a string like `'div container'`, containing the element tagname and then optionally values for the class attribute.
 * The second item may be an attributes object.  If there are no attributes, it may be omited.
-* The remaining items are either strings, numbers, or other nodes.
+* The remaining items are either strings, numbers, or other nodes.  They are the content of this element.
 
 So `<div a="b">foo</div>"` is `['div', {a:'b'}, 'foo']`
 
