@@ -46,7 +46,6 @@ function encode (s) {
   practice.
 
   We might also want an in-place normalize-node or normalize-tree.
-*/
 
 function normalizedNode (node) {
   if (node.length === 0) {
@@ -61,6 +60,21 @@ function normalizedNode (node) {
   const result = node.slice(1)
   result.splice(0,0, node[0], {})
   return result
+}
+*/
+
+function nodeChildren (node) {
+  if (typeof node[1] === 'object' && !Array.isArray(node[1])) {
+    return node.slice(2)
+  }
+  return node.slice(1)
+}
+
+function nodeAttrs (node) {
+  if (typeof node[1] === 'object' && !Array.isArray(node[1])) {
+    return node[1]
+  }
+  return {}
 }
 
 function stringify (tree, options) {
@@ -80,16 +94,9 @@ function Serializer (options) {
 // would be more efficient to use some kind of output stream instead
 // of a string, probably...
 Serializer.prototype.serialize = function (tree, indent) {
-  // not yet in node: [tags, attrs, ...children] = normalizedNode(tree)
-  const nn = normalizedNode(tree)
-  const tags = nn[0]
-  const attrs = nn[1]
-  const children = nn.slice(2)
-  /*
-  const tags = tree[0] || 'div'
-  const attrs = tree[1] || {}
-  const children = tree.slice(2)
-  */
+  const tags = tree[0]
+  const attrs = nodeAttrs(tree)
+  const children = nodeChildren(tree)
 
   debug('starting with', tags)
   let s = ''
@@ -292,6 +299,28 @@ function parseDocumentMD (text) {
   const result = writer.render(parsed)
   return parseDocument(result)
 }
+
+function getElementById (tree, s) { // byId
+  const attrs = nodeAttrs(tree)
+  const children = nodeChildren(tree)
+  if (attrs.id === s) {
+    return tree
+  }
+  for (let child of children) {
+    let result = getElementById(child, s)
+    if (result) {
+      return child
+    }
+  }
+  return undefined
+}
+
+function getElementsByTagName (tree, s) {   // byTag
+}
+
+function getElementsByClass (tree, s) {   // byClass
+}
+
 
 module.exports.stringify = stringify
 //module.exports.fromHTML = fromHTML
