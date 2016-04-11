@@ -47,7 +47,7 @@ and
 
 Each node is an array:
 
-* The first item is a string like `'div container'`. 
+* The first item is a string like `'div container'`, with the element name and optionally classnames.
 * The second item may be an attributes object.  If there are no attributes, it may be omited.
 * The remaining items are either strings, numbers, or other nodes.
 
@@ -58,22 +58,23 @@ Because there are several different ways to write things (like putting classes i
 ### pseudo-attributes
 
 All attributes with names like `style.foo` (or `$foo` TODO) are merged
-together to form the **style** attributes.
+together to form the HTML `style` attribute of the element.
 
 Attributes with names starting with `_` are omitted during conversion
 to HTML. (TODO)
 
-The special attribute `_inherit` makes it easy to factor out bits that
-are repeated in lots of element's attributes.  Sometimes this is
-better than style sheets.  (TODO)
+The special attribute `_inherit` links to another attribute object
+(recursively) where attributes should be looked for if not found.
+This helps factor out bits that are repeated in lots of element's
+attributes.  This might sometimes be better than style sheets.  (TODO)
 
 ### pseudo-elements
 
-`*wrapper` for when your content isn't a proper tree.   (only implemented at the top-level currently.   maybe later we'll allow it inside the tree, as kind of a disappearing-div)  (TODO - current called `document`)
+`*wrapper` for when your content isn't a proper tree.   (TODO: make this work at every level, not just the root, as kind of a disappearing-div)  (TODO: rename from `document`)
 
-`*comment` to represent HTML comments &amp;!-- ... -->
+`*comment` to represent HTML comments &lt;!-- ... -->
 
-`*pi` to represent processing instructions like ?xml and !DOCTYPE
+`*pi` to represent processing instructions like ?xml and !DOCTYPE (TODO: rename from `processinginstruction`).
 
 ## Functions
 
