@@ -101,7 +101,9 @@ attributes.  This might sometimes be better than style sheets.  (TODO)
 
 
 
-## Command line
+## Command line (if installed with -g)
+
+(TODO: current two different scripts)
 
 ```bash
 $ arraydom < some-input-file
