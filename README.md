@@ -117,17 +117,17 @@ would be written as
 
 `_cssURLs` array of URLs of CSS stylesheets to link to
 
-`_scriptURLs` array of URLs of scripts to include
+`_scriptURLs` array of URLs of scripts to include.   The `async` property will cause the script to be included at the end of the body to better support IE<11.
 
 ### pseudo-elements
 
-`+` for when your content isn't a proper tree.   This way you can call a function in the middle of the content list and it's okay if it returns zero, one, or many elements -- it just has to wrap it in ['+', ....] if it returns anything other than one element.   (TODO: make this work at every level, not just the root, as kind of a disappearing-div)  (TODO: rename from `document`)
+`+` for when your content isn't a proper tree.   This way you can call a function in the middle of the content list and it's okay if it returns zero, one, or many elements -- it just has to wrap it in ['+', ....] if it returns anything other than one element.   (TODO: make this work at every level, not just the root, as kind of a disappearing-div)  (TODO: rename from `document`)   Must not have any real attributes since there's no HTML element to attach them too (although pseudo attributes can be okay in some situatiuons).
 
 `*comment` to represent HTML comments &lt;!-- ... --> .   Content isn't restricted, so you can use this to comment out an arbitrary subtree.
 
 `*pi` to represent processing instructions like ?xml and !DOCTYPE (TODO: rename from `processinginstruction`).
 
-## Functions
+## Format Conversion Functions
 
 `arraydom.toHTML(node)`
 
@@ -143,6 +143,14 @@ would be written as
 
 `arraydom.toDOM(node)` and then you'll have to attach the result   In browser. (TODO)
 
+`arraydom.fromCSS(string)`
+
+`arraydom.toCSS(obj)`
+
+### Access Functions
+
+`arraydom.attrNames(node)` returns the names of each attribute of this node (TODO)
+
 `arraydom.attr(node, attrName)` returns the value of the attribute from this node.  Looks in node[1], but also in node[0] for class and id, and follows the _inherit chain (TODO)
 
 `arraydom.children(node)` (TODO)
@@ -152,7 +160,13 @@ would be written as
 
 `arraydom.find(keywords, node, func)` like walk, but filtered by keywords, which are the words in a node[0] string.  That is: `arraydom.find('.foo .bar', tree, f)` will call f on every node which has class `foo` or class `bar`.   If you want *and* instead of *or*, run find on one of the keywords and check for the others inside f.  (TODO)
 
+### Structure Conversion Functions
 
+`arraydom.expanded(node)` returns a deep copy of the tree rooted at `node`, modified to be regular and HTML-like.   That is, no classes in node[0], no `$` attributes, no `+` elements (except possibly at the root), no omitted attr objects, no _inherits, etc.
+
+`arraydom.compacted(node) returns a deep copy of the tree rooted at `node`, modified to be as nice as possible, the opposite of `expanded`.
+
+`arraydom.defclass(node, css) modifies an expanded-form tree, renaming all defclass classes, adding to the `css` object in the process.   Should this have an option for forbidding or randomizing any undeclared classes?
 
 ## Command line (if installed with -g)
 
@@ -166,5 +180,15 @@ or
 $ arraydom some-input-file
 ```
 
-Sniffs the input to see if it's json, html, or markdown.   converts to either json or html.   
+Sniffs the input to see if it's json, html, or markdown.   converts to either json or html.
+
+```bash
+$ arraydom --function foo some-input-file
+```
+
+Converts to JavaScript containing a function named `foo` which returns
+the arraydom structure given as input.  This function follows the
+[standard](https://github.com/feross/standard) syntax, not JSON, which makes
+it more suitable for including in code, potentially with modifications
+to use variables and function calls.
 
