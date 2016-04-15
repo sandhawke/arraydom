@@ -61,7 +61,7 @@ html                                  | arraydom
 `<div a="b"></div>`                   | `['div', {a:'b'}]`
 `<div a="b">foo</div>`                | `['div', {a:'b'}, 'foo']`
 `<div class="nav">foo</div>`          | `['div nav', 'foo']`
-`<p>Hello, <i>World!</i></p>`         | `['p', 'Hello, ', ['i', 'World!']]
+`<p>Hello, <i>World!</i></p>`         | `['p', 'Hello, ', ['i', 'World!']]`
 `<img style="float:left" src="icon">` | `['img', {$float:'left', src:'icon'}]`
 
 Because there are several different ways to write things (like putting classes in the first item string or in the attributes object), it's best to treat nodes as raw structures when creating them, but read them with functions like `arraydom.tag`, `arraydom.attr`, and `arraydom.forEachChild`.  (TODO)
@@ -78,6 +78,41 @@ The special attribute `_inherit` links to another attribute object
 (recursively) where attributes should be looked for if not found.
 This helps factor out bits that are repeated in lots of element's
 attributes.  This might sometimes be better than style sheets.  (TODO)
+
+`_defClass` defines some CSS, which bubbles up to the document's
+stylesheet when the document is rendered, but with renaming so it only
+applies to this element and its decendents.  The is an object whose
+keys are (pseudo) class names and values are objects mapping css
+properties (in dom no-hyphen form, prefixed with a `$`) to their
+values.  For example
+
+```css
+.foo {
+  margin-top: 3em;
+  background: red;
+}
+
+.bar {
+  margin-left: -4px;
+}
+```
+
+would be written as
+
+```javascript
+{foo: {$marginTop: '3em',
+       $background: 'red'},
+ bar  {$marginLeft: '-4px'}
+}
+```
+
+#### root pseudo-attributes
+
+`_title` the window title
+
+`_cssURLs` array of URLs of CSS stylesheets to link to
+
+`_scriptURLs` array of URLs of scripts to include
 
 ### pseudo-elements
 
