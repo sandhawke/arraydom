@@ -1,6 +1,8 @@
 ## arraydom - An elegant weapon for a more civilized HTML
 
-Consider HTML as a simple tree of JavaScript arrays.   
+Consider HTML as a simple tree of JavaScript arrays.  Some of us find
+this easier and more intuitive than any templating system, including
+JSX.
 
 (This API is not exactly what's currently implemented; it's partly
 thinking out loud about how to make the interface better.)
@@ -51,7 +53,16 @@ Each node is an array:
 * The second item may be an attributes object.  If there are no attributes, it may be omited.
 * The remaining items are either strings, numbers, or other nodes.  They are the content of this element.
 
-So `<div a="b">foo</div>"` is `['div', {a:'b'}, 'foo']`
+Examples:
+
+html                                  | arraydom
+--------------------------------------|-----------------------
+`<div>foo</div>`                      | `['div', 'foo']`
+`<div a="b"></div>`                   | `['div', {a:'b'}]`
+`<div a="b">foo</div>`                | `['div', {a:'b'}, 'foo']`
+`<div class="nav">foo</div>`          | `['div nav', 'foo']`
+`<p>Hello, <i>World!</i></p>`         | `['p', 'Hello, ', ['i', 'World!']]
+`<img style="float:left" src="icon">` | `['img', {$float:'left', src:'icon'}]`
 
 Because there are several different ways to write things (like putting classes in the first item string or in the attributes object), it's best to treat nodes as raw structures when creating them, but read them with functions like `arraydom.tag`, `arraydom.attr`, and `arraydom.forEachChild`.  (TODO)
 
@@ -70,9 +81,9 @@ attributes.  This might sometimes be better than style sheets.  (TODO)
 
 ### pseudo-elements
 
-`*wrapper` for when your content isn't a proper tree.   (TODO: make this work at every level, not just the root, as kind of a disappearing-div)  (TODO: rename from `document`)
+`+` for when your content isn't a proper tree.   This way you can call a function in the middle of the content list and it's okay if it returns zero, one, or many elements -- it just has to wrap it in ['+', ....] if it returns anything other than one element.   (TODO: make this work at every level, not just the root, as kind of a disappearing-div)  (TODO: rename from `document`)
 
-`*comment` to represent HTML comments &lt;!-- ... -->
+`*comment` to represent HTML comments &lt;!-- ... --> .   Content isn't restricted, so you can use this to comment out an arbitrary subtree.
 
 `*pi` to represent processing instructions like ?xml and !DOCTYPE (TODO: rename from `processinginstruction`).
 
@@ -82,13 +93,15 @@ attributes.  This might sometimes be better than style sheets.  (TODO)
 
 `arraydom.toIndentedHTML(node)` tries to cleverly figure out a nice indenting, where that wont mess up the content.   Basically, if an element contains any text children, it's assumed that spacing matters.  (TODO: currently uses options to toHTML)
 
+`arraydom.toHTMLDocument(node)` like toIndentedHTML, but provides standard boilerplate, so you can just provide the body content and the doctype, html, head, and body elements get generated.   Various configuration options are available as pseudo-attributes on the node.    See root pseudo-attributes.  (TODO)
+
 `arraydom.fromHTML(string)`
 
 `arraydom.fromMarkdown(string)`
 
-`arraydom.fromDOM(element)` (TODO)
+`arraydom.fromDOM(element)` (TODO)   In browser.
 
-`arraydom.toDOM(node)` and then you'll have to attach the result   (TODO)
+`arraydom.toDOM(node)` and then you'll have to attach the result   In browser. (TODO)
 
 `arraydom.attr(node, attrName)` returns the value of the attribute from this node.  Looks in node[1], but also in node[0] for class and id, and follows the _inherit chain (TODO)
 
