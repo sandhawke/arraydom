@@ -127,6 +127,8 @@ would be written as
 
 `*pi` to represent processing instructions like ?xml and !DOCTYPE (TODO: rename from `processinginstruction`).
 
+`*isolate` means nothing in the children can interact with the rest of the tree.  The elements and attributes all come from a safe whitelist, and the classnames are all renamed to have a new prefix (attr('isolationPrefix') if you want to control it).   Of course, it can still visually affect anything on the screen, so this may not be useful. (TODO MAYBE)
+
 ## Format Conversion Functions
 
 `arraydom.toHTML(node)`
