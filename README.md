@@ -81,7 +81,7 @@ attributes.  This might sometimes be better than style sheets.  (TODO)
 
 `_defClass` defines some CSS, which bubbles up to the document's
 stylesheet when the document is rendered, but with renaming so it only
-applies to this element and its decendents.  The is an object whose
+applies to this element and its decendents.  The value is an object whose
 keys are (pseudo) class names and values are objects mapping css
 properties (in dom no-hyphen form, prefixed with a `$`) to their
 values.  For example
@@ -100,9 +100,14 @@ values.  For example
 would be written as
 
 ```javascript
-{foo: {$marginTop: '3em',
-       $background: 'red'},
- bar  {$marginLeft: '-4px'}
+{
+  foo: {
+    $marginTop: '3em',
+    $background: 'red'
+  },
+  bar:  {
+    $marginLeft: '-4px'
+  }
 }
 ```
 
