@@ -4,9 +4,6 @@ Consider HTML as a simple tree of JavaScript arrays.  Some of us find
 this easier and more intuitive than any templating system, including
 JSX.
 
-(This API is not exactly what's currently implemented; it's partly
-thinking out loud about how to make the interface better.)
-
 
 Converts back and forth between these two representations:
 
@@ -123,6 +120,11 @@ to HTML.
 `arraydom.expanded(node)` returns a deep copy of the tree rooted at `node`, modified to be regular and HTML-like.   That is, no classes in node[0], no `$` attributes, no `+` elements (except possibly at the root), no omitted attr objects, no _inherits, etc.
 
 `arraydom.compacted(node) returns a deep copy of the tree rooted at `node`, modified to be as nice as possible, the opposite of `expanded`.
+
+### Data Binding
+
+`arraydom.eval(node, db)` runs any functions in the tree, passing them
+the db parameter.   This is a step toward dynamic re-eval as in React.  (TODO)
 
 ## Command line (if installed with -g)
 
