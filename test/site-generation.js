@@ -1,5 +1,6 @@
 'use strict'
 
+/*
 const test = require('tape')
 const arraydom = require('..')
 
@@ -15,3 +16,4 @@ test('', t => {
   let expected = ''
   t.equal(expected, generated)
 })
+*/

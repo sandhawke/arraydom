@@ -174,7 +174,7 @@ function compacted (node) {
             throw Error('having trouble with splitting style value:' +
                         JSON.stringify(val))
           }
-          attrObj['$' + lr[0]] = lr[1]
+          attrObj['$' + lr[0]] = lr[1].trim()
         }
       }
     } else {

@@ -5,6 +5,7 @@ const fromHTML = require('./fromHTML')
 const fromMD = require('./fromMD')
 const page = require('./page')
 const site = require('./site')
+const struct = require('./struct')
 
 const debug = require('debug')('arraydom')
 
@@ -18,4 +19,6 @@ module.exports.parseDocumentMD = fromMD.parseDocumentMD
 
 module.exports.generatePage = page.generate
 module.exports.generateSite = site.generate
+
+module.exports.compacted = struct.compacted
 

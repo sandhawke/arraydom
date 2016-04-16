@@ -4,7 +4,7 @@
   This is kind of like JSON.stringify (with indenting) except:
 
   - It uses less quoting (single not double, and not object props)
-  - It keeps things on one line a lot more  (about 35% the number of lines)
+  - It keeps things on one line a lot more  (23% the lines,  on w3.org homepage)
   - The output conforms to 'standard'
 
   Very much a matter of taste.
@@ -14,7 +14,15 @@
 
 */
 
+/* did a little experiment to see if s.push(...) and s.join('') would
+ * be faster than all these s += bits, ... but it turns out to be
+ * slower.  Dunno how V8 is doing s+=foo so fast these
+ * days.... Presumably it would be faster to stream this instead of
+ * buffering in string, at some point.   Easy enough change.*/
+//var microtime = require('microtime')
+
 function serialize (node, wrap) {
+  //let start = microtime.nowDouble()
   let s = ''
   let i = 0
   let p = 0
@@ -46,6 +54,9 @@ function serialize (node, wrap) {
   }
   walk(node, ostr)
 
+  //let end = microtime.nowDouble()
+  console.log('elapsed ', end-start)
+  
   s += '\n' 
   if (wrap) {
     let ss = `'use strict'
@@ -112,7 +123,7 @@ module.exports = serialize
 
 // console.log(serialize(['a','hello', ['b', 'fosdfsdfsf asdf asdf asdf s df sdf sd f sdf sd fs df sd fs df sd fs d sd f sd f sd foo', 'barrrr'], 'world asdkfjkasjf kasdlkf laskd flk jaslkdfj alsk jflkj asdlk;fj al;ks dfl; js;ldfj asdl; fl; a']))
 
-console.log(serialize(require('./o1.json'), true))
+// console.log(serialize(require('./o1.json'), true))
 
 // console.log(serialize(require('./node_modules/faucet/node_modules/through2/node_modules/xtend/package.json')))
 
