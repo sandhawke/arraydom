@@ -4,8 +4,7 @@
   "description": "Consider HTML a simple tree of JS arrays",
   "main": "index.js",
   "bin": {
-    "arraydom-from-html": "bin/arraydom-from-html",
-    "arraydom-to-html": "bin/arraydom-to-html"
+    "arraydom": "bin/arraydom"
   },
   "scripts": {
     "test": "faucet"

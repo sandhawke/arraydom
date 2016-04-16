@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+'use strict'  // -*-mode: javascript -*-
+
+const program = require('commander')
+const package_json = require('../package.json')
+const debug = require('debug')('arraydom.to-json')
+const arraydom = require('../index')
+const toStandardJS = require('../toStandardJS')
+
+program
+  .version(package_json.version)
+  .usage('< input-file > output-file')
+  .option('-j, --js', "Output (std) JavaScript instead of JSON")
+  .parse(process.argv)
+
+if (program.args.length !== 0) {
+  program.outputHelp()
+  process.exit(-1)
+}
+
+let buf = ''
+process.stdin.setEncoding('utf8');
+process.stdin.on('readable', () => {
+  var chunk = process.stdin.read()
+  if (chunk !== null) {
+    buf += chunk
+  }
+});
+process.stdin.on('end', () => {
+  run(buf)
+});
+
+function run (s) {
+  s = s.trim()
+  let out, doc
+  if (s.startsWith('<')) {
+    doc = arraydom.parseDocument(s)
+    if (program.js) {
+      out = toStandardJS(doc)
+    } else {
+      out = JSON.stringify(doc, null, 2)
+    }
+  } else {
+    doc = JSON.parse(s)
+    out = arraydom.toHTML(doc)
+  }
+  process.stdout.write(out)
+}

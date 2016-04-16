@@ -199,3 +199,6 @@ module.exports.match = match
 module.exports.expanded = expanded
 module.exports.compacted = compacted
 
+// internal
+module.exports.attrsPresent = attrsPresent
+module.exports.rawAttrs = rawAttrs

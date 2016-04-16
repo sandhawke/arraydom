@@ -3,14 +3,11 @@
 
   This is kind of like JSON.stringify (with indenting) except:
 
-  - It uses less quoting
-  - It keeps things on one line a lot more
+  - It uses less quoting (single not double, and not object props)
+  - It keeps things on one line a lot more  (about 35% the number of lines)
   - The output conforms to 'standard'
 
   Very much a matter of taste.
-
-  Doesn't quote properties in objects -- this could be a problem if we
-  hit a JS keyword.
 
   Maybe I should make this a different module?  There's nothing
   arraydom-ish about it...
@@ -49,6 +46,7 @@ function serialize (node, wrap) {
   }
   walk(node, ostr)
 
+  s += '\n' 
   if (wrap) {
     let ss = `'use strict'
 
@@ -68,7 +66,9 @@ function quotedString (s) {
 }
 
 function quotekey (s) {
-  if (s.match(/^[a-zA-Z_$]+$/) && !reserved[s]) {
+  // curiously, it looks like JS doesn't care about reserved words in this
+  // place in the grammar
+  if (s.match(/^[a-zA-Z_$]+$/)) {
     return s
   } else {
     return quotedString(s)

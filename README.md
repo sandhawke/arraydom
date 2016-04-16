@@ -68,18 +68,19 @@ Because there are several different ways to write things (like putting classes i
 
 ### pseudo-attributes
 
-All attributes with names like `style.foo` (or `$foo` TODO) are merged
+All attributes with names like `style.foo` (or `$foo`) are merged
 together to form the HTML `style` attribute of the element.
 
 Attributes with names starting with `_` are omitted during conversion
-to HTML. (TODO)
+to HTML.
 
-The special attribute `_inherit` links to another attribute object
-(recursively) where attributes should be looked for if not found.
-This helps factor out bits that are repeated in lots of element's
-attributes.  This might sometimes be better than style sheets.  (TODO)
+(*IDEA BEING CONSIDERED*) The special attribute `_inherit` links to
+another attribute object (recursively) where attributes should be
+looked for if not found.  This helps factor out bits that are repeated
+in lots of element's attributes.  This might sometimes be better than
+style sheets.
 
-`_defClass` defines some CSS, which bubbles up to the document's
+(*IDEA BEING CONSIDERED*) `_defClass` defines some CSS, which bubbles up to the document's
 stylesheet when the document is rendered, but with renaming so it only
 applies to this element and its decendents.  The value is an object whose
 keys are (pseudo) class names and values are objects mapping css
@@ -158,9 +159,12 @@ would be written as
 `arraydom.children(node)` (TODO)
 
 `arraydom.forEachChild(node, cb)` slightly more efficient than children()
+
 `arraydom.walk(node, func)` calls func on each node in the tree rooted at `node`  (TODO)
 
-`arraydom.find(keywords, node, func)` like walk, but filtered by keywords, which are the words in a node[0] string.  That is: `arraydom.find('.foo .bar', tree, f)` will call f on every node which has class `foo` or class `bar`.   If you want *and* instead of *or*, run find on one of the keywords and check for the others inside f.  (TODO)
+`arraydom.match(node, pattern)` checks the node against a css-like selector.  Returns true if the node has a tagname, class, or id which matches any term in the pattern, where class is prefixed by a dot and id by a hash.
+
+`arraydom.find(filter, node, func)` like walk, but only calls the function if the filter matches.  filter can be a boolean function or a string.  If it's a string, it's used as a pattern for calling `match`.
 
 ### Structure Conversion Functions
 
