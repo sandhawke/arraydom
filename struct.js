@@ -105,21 +105,21 @@ function classesAsKeys (node) {
   let s2 = embeddedClassNames(node).split(' ')
   let both = s1.concat(s2)
   let bothObj = {}
-  both.forEach(x => {if (x) {bothObj[x] = true}})
+  both.forEach((x) => { if (x) { bothObj[x] = true } })
   return bothObj
 }
 
 function walk (node, func) {
   func(node)
-  forEachChild(node, x => walk(x, func))
+  forEachChild(node, (x) => walk(x, func))
 }
 
 function find (filter, node, func) {
   if (typeof filter === 'string') {
-    filter = (x => match(node, filter))
+    filter = (x) => match(node, filter)
   }
   if (filter(node)) func(node)
-  forEachChild(node, x => find(filter, x, func))
+  forEachChild(node, (x) => find(filter, x, func))
 }
 
 function match (node, pattern) {
@@ -142,7 +142,7 @@ function expanded (node) {
   if (typeof node === 'string') return node
   const result = [ tagName(node),
                    attrsCopy(node) ]
-  forEachChild(node, x => { result.push(expanded(x)) })
+  forEachChild(node, (x) => { result.push(expanded(x)) })
   return result
 }
 
@@ -163,18 +163,18 @@ function compacted (node) {
     if (key === 'class') {
       result[0] += ' ' + val
     } else if (key === 'style') {
-      if (val.indexOf('"') != -1 || val.indexOf("'") != -1) {
+      if (val.indexOf('"') !== -1 || val.indexOf("'") !== -1) {
         // not safe to split
-        attrObj.style = val  
+        attrObj.style = val
       } else {
         let styles = val.split(';')
         for (let line of styles) {
           let lr = line.split(':')
-          if (lr.length != 2) {
-            throw Error('having trouble with splitting style value:'+
+          if (lr.length !== 2) {
+            throw Error('having trouble with splitting style value:' +
                         JSON.stringify(val))
           }
-          attrObj['$'+lr[0]] = lr[1]
+          attrObj['$' + lr[0]] = lr[1]
         }
       }
     } else {
@@ -184,7 +184,7 @@ function compacted (node) {
   if (Object.getOwnPropertyNames(attrObj).length > 0) {
     result.push(attrObj)
   }
-  forEachChild(node, x => { result.push(compacted(x)) })
+  forEachChild(node, (x) => { result.push(compacted(x)) })
   return result
 }
 
