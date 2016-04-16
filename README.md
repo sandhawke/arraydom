@@ -55,7 +55,7 @@ html                                  | arraydom
 `<p>Hello, <i>World!</i></p>`         | `['p', 'Hello, ', ['i', 'World!']]`
 `<img style="float:left" src="icon">` | `['img', {$float:'left', src:'icon'}]`
 
-Because there are several different ways to write things (like putting classes in the first item string or in the attributes object), it's best to treat nodes as raw structures when creating them, but read them with functions like `arraydom.tag`, `arraydom.attr`, and `arraydom.forEachChild`.  
+Because there are several different ways to write things (like putting classes in the first item string or in the attributes object), it's best to treat nodes as raw structures when creating them, but read them with functions like `arraydom.tagName`, `arraydom.attr`, and `arraydom.forEachChild`.  
 
 ### pseudo-attributes
 
@@ -68,11 +68,16 @@ to HTML.
 
 #### root pseudo-attributes
 
+When using `arraydom.toHTMLDocument` to build your document, the
+attributes affect the boilerplate.
+
 `_title` the window title
 
 `_cssURLs` array of URLs of CSS stylesheets to link to
 
 `_scriptURLs` array of URLs of scripts to include.   The `async` property will cause the script to be included at the end of the body to better support IE<11.
+
+`_ie8` include polyfills for ie8.
 
 ### pseudo-elements
 
@@ -128,14 +133,8 @@ the db parameter.   This is a step toward dynamic re-eval as in React.  (TODO)
 
 ## Command line (if installed with -g)
 
-(TODO: current two different scripts)
-
 ```bash
 $ arraydom < some-input-file
-```
-or
-```bash
-$ arraydom some-input-file
 ```
 
 Sniffs the input to see if it's json, html, or markdown.   converts to either json or html.
@@ -145,5 +144,6 @@ $ arraydom -j some-input-file
 ```
 
 Converts to JavaScript instead of JSON, with a much more compact
-indenting conention than JSON.  Good for when you want to convert some
-existing HTML into something you'll run in your code.  
+indenting style than JSON.  (Run on w3.org, the output with -j has 1/4
+as many lines of output.)  Good for when you want to convert some
+existing HTML into a template embedded in your code.
