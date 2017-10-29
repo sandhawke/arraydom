@@ -20,19 +20,40 @@ function children (node) {
   return node.slice(1)
 }
 
+function child (node, index) {
+  if (attrsPresent(node)) {
+    return node[index + 2]
+  }
+  return node[index + 1]
+}
+
+function numChildren (node) {
+  let result = node.length - 1
+  if (attrsPresent(node)) result--
+  return result
+}
+
 function forEachChild (node, f) {
   const from = attrsPresent(node) ? 2 : 1
   for (let i = from; i < node.length; i++) {
-    f(node[i])
+    const n = node[i]
+    if (typeof n === 'string' || typeof n === 'number' || Array.isArray(n)) {
+      f(n)
+    } else {
+      throw Error('arraydom wrong type value, ' + JSON.stringify(n) + ', index '+ i + ' of ' + JSON.stringify(node), node)
+    }
   }
 }
 
 function tagName (node) {
+  // OF COURSE, we should catch this stuff upsteam, but sometimes...
+  if (typeof node[0] !== 'string') throw Error('type of [0] is ' + typeof node + ':' + JSON.stringify(node))
   const parts = node[0].split(' ')
   return parts[0]
 }
 
 function embeddedClassNames (node) {
+  if (typeof node[0] !== 'string') throw Error('type of [0] is ' + typeof node + ':' + JSON.stringify(node))
   const parts = node[0].split(' ')
   if (parts.length > 1) {
     return parts.slice(1).join(' ')
@@ -40,7 +61,7 @@ function embeddedClassNames (node) {
   return ''
 }
 
-function attrNames (node, includeHidden) {
+function attrNames (node, includeHidden, rawStyle) {
   const a = rawAttrs(node)
   const result1 = Object.getOwnPropertyNames(a)
   if (a['class'] === undefined && embeddedClassNames(node)) {
@@ -49,9 +70,11 @@ function attrNames (node, includeHidden) {
   const result2 = []
   let hasStyle = false
   for (let key of result1) {
-    if (key[0] === '$' || key.startsWith('style.')) {
-      hasStyle = true
-      continue
+    if (!rawStyle) {
+      if (key[0] === '$' || key.startsWith('style.')) {
+        hasStyle = true
+        continue
+      }
     }
     if (key[0] === '_' && !includeHidden) {
       continue
@@ -114,6 +137,14 @@ function walk (node, func) {
   forEachChild(node, (x) => walk(x, func))
 }
 
+function walkAttrValues (node, func) {
+  walk(node, n => {
+    for (let key of attrNames(node)) {
+      func(node, key)
+    }
+  })
+}
+
 function find (filter, node, func) {
   if (typeof filter === 'string') {
     filter = (x) => match(node, filter)
@@ -139,7 +170,7 @@ function match (node, pattern) {
 }
 
 function expanded (node) {
-  if (typeof node === 'string') return node
+  if (typeof node === 'string' || typeof node === 'number') return node
   const result = [ tagName(node),
                    attrsCopy(node) ]
   forEachChild(node, (x) => { result.push(expanded(x)) })
@@ -193,12 +224,15 @@ module.exports.forEachChild = forEachChild
 module.exports.tagName = tagName
 module.exports.attrNames = attrNames
 module.exports.attr = attr
+module.exports.numChildren = numChildren
+module.exports.child = child
 module.exports.walk = walk
+module.exports.walkAttrValues = walkAttrValues
 module.exports.find = find
 module.exports.match = match
 module.exports.expanded = expanded
 module.exports.compacted = compacted
 
-// internal
+// maybe... internal
 module.exports.attrsPresent = attrsPresent
 module.exports.rawAttrs = rawAttrs
