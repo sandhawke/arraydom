@@ -1,4 +1,9 @@
 'use strict'
+/*
+
+  deprecated -- use struct.js instead
+
+*/
 
 const debug = require('debug')('arraydom.toHTML')
 
@@ -15,6 +20,15 @@ function attrs (node) {
   }
   return {}
 }
+
+function writableAttrs (node) {
+  if (typeof node[1] === 'object' && !Array.isArray(node[1])) {
+    return node[1]
+  }
+  node.splice(1, 0, {})
+  return node[1]
+}
+
 
 module.exports.attrs = attrs
 module.exports.children = children

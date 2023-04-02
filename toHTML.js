@@ -81,11 +81,11 @@ Serializer.prototype.serialize = function (tree, indent) {
   const attrs = node.attrs(tree)
   const children = node.children(tree)
 
-  debug('starting with', tags)
+  // debug('starting with', tags)
   let s = ''
   const parts = tags.split(' ')
   const tag = parts[0]
-  debug('parts', parts)
+  // debug('parts', parts)
 
   // 'document' is our pseudo-element for handling the fact that HTML
   // documents are not trees when you allow comments, doctype, etc.
@@ -130,9 +130,9 @@ Serializer.prototype.serialize = function (tree, indent) {
   let style = ''
   for (let key of attrnames) {
     let val = attrs[key]
-    debug('key:', key)
-    if (key.localeCompare('stylf') === 1) {
-      debug('after style.')
+    // debug('key:', key)
+    if (key.localeCompare('style') === 1) {
+      // debug('after style.')
       // we're past any style.foo entries
       if (style !== '') {
         s += ' style="' + style.trim() + '"'

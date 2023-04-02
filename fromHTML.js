@@ -70,7 +70,11 @@ function moveClassToTag (tree) {
     let numval = Number(val)
     if (!Number.isNaN(numval)) {
       if ('' + numval === val) {
-        attrs[key] = numval
+        try {
+          attrs[key] = numval
+        } catch (e) {
+          console.warn(e, tree)
+        }
       }
     }
   }

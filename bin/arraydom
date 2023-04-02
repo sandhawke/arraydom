@@ -5,7 +5,7 @@ const program = require('commander')
 const package_json = require('../package.json')
 const debug = require('debug')('arraydom.to-json')
 const arraydom = require('../index')
-const toStandardJS = require('../toStandardJSx')
+//const toStandardJS = require('../toStandardJSx')
 
 program
   .version(package_json.version)
